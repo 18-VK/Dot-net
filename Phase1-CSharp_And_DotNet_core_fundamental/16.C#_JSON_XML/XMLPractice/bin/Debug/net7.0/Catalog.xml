@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Book Id="101">
+    <Title>C# Fundamentals</Title>
+    <Author>Aman</Author>
+    <Price>350</Price>
+    <PublishYear>2019</PublishYear>
+  </Book>
+  <Book Id="105">
+    <Title>Advanced LINQ</Title>
+    <Author>Vikram</Author>
+    <Price>550</Price>
+    <PublishYear>2020</PublishYear>
+  </Book>
+  <Book Id="105">
+    <Title>Async Programming</Title>
+    <Author>Vikram</Author>
+    <Price>501</Price>
+    <PublishYear>2020</PublishYear>
+  </Book>
+</Catalog>

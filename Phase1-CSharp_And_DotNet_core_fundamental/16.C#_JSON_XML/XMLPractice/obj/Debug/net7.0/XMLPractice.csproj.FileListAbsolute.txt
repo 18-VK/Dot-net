@@ -1,0 +1,15 @@
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\bin\Debug\net7.0\XMLPractice.exe
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\bin\Debug\net7.0\XMLPractice.deps.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\bin\Debug\net7.0\XMLPractice.runtimeconfig.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\bin\Debug\net7.0\XMLPractice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\bin\Debug\net7.0\XMLPractice.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\XMLPractice.csproj.AssemblyReference.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\XMLPractice.GeneratedMSBuildEditorConfig.editorconfig
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\XMLPractice.AssemblyInfoInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\XMLPractice.AssemblyInfo.cs
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\XMLPractice.csproj.CoreCompileInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\XMLPractice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\refint\XMLPractice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\XMLPractice.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\XMLPractice.genruntimeconfig.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\XMLPractice\obj\Debug\net7.0\ref\XMLPractice.dll

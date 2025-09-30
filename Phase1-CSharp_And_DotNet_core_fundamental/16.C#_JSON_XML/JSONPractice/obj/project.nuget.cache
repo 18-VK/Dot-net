@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "aGC+W9cX+osZ/hCZj89BJ0M+fhe+hRb+YUvbiRtUO+DIMtR43f3yTvTkICKnhgoaFHou5FdwVIF72I9OgN5HuQ==",
+  "success": true,
+  "projectFilePath": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\16.C#_JSON_XML\\JSONPractice\\JSONPractice.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

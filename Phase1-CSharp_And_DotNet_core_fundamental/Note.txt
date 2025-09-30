@@ -1,0 +1,15 @@
+Steps to run .cs file without creating any project
+---------------------------------------------------
+1. Create a .cs file (e.g., program.cs)
+2. Open terminal in VS Code and run : 
+    command : csc program.cs
+3.Run the compiled .exe (Windows):
+    command : ./program.exe
+                or On Linux/macOS:
+    command : mono program.exe
+
+note : for newer version like .net 8 and 9
+
+for version 7 
+-------------
+command : dotnet script <filename>

@@ -1,0 +1,17 @@
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\bin\Debug\net7.0\JSONPractice.exe
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\bin\Debug\net7.0\JSONPractice.deps.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\bin\Debug\net7.0\JSONPractice.runtimeconfig.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\bin\Debug\net7.0\JSONPractice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\bin\Debug\net7.0\JSONPractice.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\bin\Debug\net7.0\Newtonsoft.Json.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\JSONPractice.csproj.AssemblyReference.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\JSONPractice.GeneratedMSBuildEditorConfig.editorconfig
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\JSONPractice.AssemblyInfoInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\JSONPractice.AssemblyInfo.cs
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\JSONPractice.csproj.CoreCompileInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\JSONPractice.csproj.CopyComplete
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\JSONPractice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\refint\JSONPractice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\JSONPractice.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\JSONPractice.genruntimeconfig.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\16.C#_JSON_XML\JSONPractice\obj\Debug\net7.0\ref\JSONPractice.dll

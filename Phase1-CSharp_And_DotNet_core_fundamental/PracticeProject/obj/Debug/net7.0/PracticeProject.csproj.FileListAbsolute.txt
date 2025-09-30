@@ -1,0 +1,15 @@
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\bin\Debug\net7.0\PracticeProject.exe
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\bin\Debug\net7.0\PracticeProject.deps.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\bin\Debug\net7.0\PracticeProject.runtimeconfig.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\bin\Debug\net7.0\PracticeProject.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\bin\Debug\net7.0\PracticeProject.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\PracticeProject.csproj.AssemblyReference.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\PracticeProject.GeneratedMSBuildEditorConfig.editorconfig
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\PracticeProject.AssemblyInfoInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\PracticeProject.AssemblyInfo.cs
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\PracticeProject.csproj.CoreCompileInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\PracticeProject.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\refint\PracticeProject.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\PracticeProject.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\PracticeProject.genruntimeconfig.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\PracticeProject\obj\Debug\net7.0\ref\PracticeProject.dll
