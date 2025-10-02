@@ -96,8 +96,8 @@ Will not go through these
 - [*] CancellationToken
 - [*] ConfigureAwait
 - [ ] Parallel.For, Parallel.ForEach // Skipping 
-- [ ] ValueTask
-- [ ] Deadlocks & race conditions
+- [*] ValueTask
+- [*] Deadlocks & race conditions
 - [*] Locks (`lock`, `Monitor`, `Mutex`, `SemaphoreSlim`)
 - [ ] Concurrent collections in multithreading
 
