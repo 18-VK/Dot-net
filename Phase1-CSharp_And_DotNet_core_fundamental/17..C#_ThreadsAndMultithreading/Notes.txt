@@ -354,3 +354,37 @@ To cancel or signal a thread that might be waiting for I/O, sleeping, or joined,
 For example:
 - Stopping a polling thread that sleeps between checks.
 - Cancelling a thread that waits on Thread.Join or Monitor.Wait.
+
+Puase the thread
+----------------
+Because Suspend is unsafe, .NET provides cooperative suspension techniques — meaning the thread decides when to pause,
+ rather than being forced externally.
+
+Option 1: Using a flag and ManualResetEventSlim
+ManualResetEventSlim pauseEvent = new ManualResetEventSlim(true);
+bool running = true;
+
+Thread t = new Thread(() =>
+{
+    while (running)
+    {
+        pauseEvent.Wait(); // wait here if paused
+        Console.WriteLine("Working...");
+        Thread.Sleep(500);
+    }
+    Console.WriteLine("Thread stopped.");
+});
+
+t.Start();
+
+Thread.Sleep(2000);
+Console.WriteLine("Pausing...");
+pauseEvent.Reset();  // pauses the thread
+
+Thread.Sleep(2000);
+Console.WriteLine("Resuming...");
+pauseEvent.Set();    // resumes the thread
+
+Thread.Sleep(2000);
+running = false;     // signal exit
+t.Join();

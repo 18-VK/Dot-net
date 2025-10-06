@@ -151,7 +151,7 @@ Most common methods :
 Example : 
 
 using System;
-using System.Collections.Concurrent;
+using System.Collections.Concurrent; 
 using System.Threading.Tasks;
 
 var bc = new BlockingCollection<int>(boundedCapacity: 3);
@@ -174,7 +174,65 @@ var consumer = Task.Run(() =>
         Console.WriteLine($"Consumed {item}");
 });
 
-Task.WaitAll(producer, consumer);
+The setup : 
+
+You have a BlockingCollection<T> like this:
+
+BlockingCollection<int> collection = new BlockingCollection<int>(boundedCapacity: 5);
+
+Then you have two tasks:
+
+// Producer
+Task.Run(() =>
+{
+    for (int i = 0; i < 20; i++)
+    {
+        collection.Add(i);
+        Console.WriteLine($"Produced: {i}");
+    }
+    collection.CompleteAdding();
+});
+
+// Consumer
+Task.Run(() =>
+{
+    foreach (var item in collection.GetConsumingEnumerable())
+    {
+        Console.WriteLine($"Consumed: {item}");
+        Thread.Sleep(500); // simulate slow consumer
+    }
+});
+
+2️⃣ What happens when producer and consumer run
+✅ While the collection is not full
+
+Producer calls Add(item) → item is added immediately.
+Consumer calls Take() or enumerates via GetConsumingEnumerable() → consumes as soon as an item is available.
+
+⚠️ When the collection reaches its bound (capacity)
+
+If the collection has reached the bounded capacity,
+then the next Add(item) call blocks (waits) until space becomes available.
+
+The producer does not add new items beyond that bound.
+It waits until the consumer removes at least one item.
+
+3️⃣ When the consumer consumes
+
+When the consumer takes an item (using Take() or the enumerator), the count decreases.
+This frees up a slot in the bounded collection.
+The producer’s blocked Add() call now unblocks and adds the next item.
+So the producer and consumer are effectively synchronized — the collection acts as a buffer between them.
+
+
+| Time | Producer action                        | Collection contents | Consumer action |
+| ---- | -------------------------------------- | ------------------- | --------------- |
+| t0   | Add(1)                                 | [1]                 | —               |
+| t1   | Add(2)                                 | [1,2]               | —               |
+| t2   | Add(3)                                 | [1,2,3]             | —               |
+| t3   | Add(4) → **blocks** (capacity reached) | [1,2,3]             | —               |
+| t4   | Consumer takes(1)                      | [2,3]               | frees 1 slot    |
+| t5   | Producer’s blocked Add(4) completes    | [2,3,4]             | —               |
 
 Note : 
 

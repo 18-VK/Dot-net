@@ -1,7 +1,7 @@
 ThreadPool 
 ----------
 ThreadPool is a CLR-managed pool of worker threads (and I/O completion threads). Use it for many short-lived background 
-asks. Most code uses Task.Run (which uses the pool) instead of calling ThreadPool directly.
+tasks. Most code uses Task.Run (which uses the pool) instead of calling ThreadPool directly.
 
 ThreadPool methods 
 ------------------

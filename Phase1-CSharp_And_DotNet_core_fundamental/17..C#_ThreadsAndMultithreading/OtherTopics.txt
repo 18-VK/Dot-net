@@ -248,8 +248,8 @@ First run of the program sets createdNew = true.
 Second run (while first still holds the mutex) sets createdNew = false.
 
 > WaitOne Overloads
-> WaitOne() blocks indefinitely.
-> WaitOne(TimeSpan) or WaitOne(int milliseconds) time out if the mutex isn’t free.
+- WaitOne() blocks indefinitely.
+- WaitOne(TimeSpan) or WaitOne(int milliseconds) time out if the mutex isn’t free.
 
 > ReleaseMutex
 Must be called once for every successful WaitOne on that thread.

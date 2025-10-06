@@ -1,0 +1,15 @@
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\MultithreadingPractice.csproj.AssemblyReference.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\MultithreadingPractice.GeneratedMSBuildEditorConfig.editorconfig
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\MultithreadingPractice.AssemblyInfoInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\MultithreadingPractice.AssemblyInfo.cs
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\MultithreadingPractice.csproj.CoreCompileInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\bin\Debug\net7.0\MultithreadingPractice.exe
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\bin\Debug\net7.0\MultithreadingPractice.deps.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\bin\Debug\net7.0\MultithreadingPractice.runtimeconfig.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\bin\Debug\net7.0\MultithreadingPractice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\bin\Debug\net7.0\MultithreadingPractice.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\MultithreadingPractice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\refint\MultithreadingPractice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\MultithreadingPractice.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\MultithreadingPractice.genruntimeconfig.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\17..C#_ThreadsAndMultithreading\MultithreadingPractice\obj\Debug\net7.0\ref\MultithreadingPractice.dll
