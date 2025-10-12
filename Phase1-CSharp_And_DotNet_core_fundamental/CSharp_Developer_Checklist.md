@@ -99,7 +99,7 @@ Will not go through these
 - [*] ValueTask
 - [*] Deadlocks & race conditions
 - [*] Locks (`lock`, `Monitor`, `Mutex`, `SemaphoreSlim`)
-- [ ] Concurrent collections in multithreading
+- [*] Concurrent collections in multithreading
 
 ## 9. LINQ & Data Queries
 - [ ] LINQ basics (query & method syntax)

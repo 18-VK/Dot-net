@@ -1,0 +1,11 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Program.AssemblyInfo
+build_property.ProjectDir = e:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\7.C#_Array N_Arraylist\obj\Debug\net10.0\
