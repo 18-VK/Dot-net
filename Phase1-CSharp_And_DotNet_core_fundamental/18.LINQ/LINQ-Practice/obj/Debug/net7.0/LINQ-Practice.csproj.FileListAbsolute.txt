@@ -1,0 +1,15 @@
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\LINQ-Practice.csproj.AssemblyReference.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\LINQ-Practice.GeneratedMSBuildEditorConfig.editorconfig
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\LINQ-Practice.AssemblyInfoInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\LINQ-Practice.AssemblyInfo.cs
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\LINQ-Practice.csproj.CoreCompileInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\bin\Debug\net7.0\LINQ-Practice.exe
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\bin\Debug\net7.0\LINQ-Practice.deps.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\bin\Debug\net7.0\LINQ-Practice.runtimeconfig.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\bin\Debug\net7.0\LINQ-Practice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\bin\Debug\net7.0\LINQ-Practice.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\LINQ-Practice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\refint\LINQ-Practice.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\LINQ-Practice.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\LINQ-Practice.genruntimeconfig.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\18.LINQ\LINQ-Practice\obj\Debug\net7.0\ref\LINQ-Practice.dll
