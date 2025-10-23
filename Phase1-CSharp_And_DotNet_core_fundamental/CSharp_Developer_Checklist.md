@@ -102,13 +102,13 @@ Will not go through these
 - [*] Concurrent collections in multithreading
 
 ## 9. LINQ & Data Queries
-- [ ] LINQ basics (query & method syntax)
-- [ ] Filtering, projection, ordering
-- [ ] Aggregation (`Sum`, `Count`, `Average`)
-- [ ] Grouping (`group by`, `ToLookup`)
-- [ ] Joins
-- [ ] Deferred execution
-- [ ] PLINQ (Parallel LINQ)
+- [*] LINQ basics (query & method syntax)
+- [*] Filtering, projection, ordering
+- [*] Aggregation (`Sum`, `Count`, `Average`)
+- [*] Grouping (`group by`, `ToLookup`)
+- [*] Joins
+- [*] Deferred execution
+- [ ] PLINQ (Parallel LINQ) // skipping for now,  it is use for parallel operation by assigning diff    thread
 - [ ] LINQ with Collections, XML, EF
 
 ## 10. Modern C# Features (C# 7+)
