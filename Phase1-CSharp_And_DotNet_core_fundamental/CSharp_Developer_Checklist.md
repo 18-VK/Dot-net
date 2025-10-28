@@ -75,8 +75,8 @@ Will not go through these
 - [*] LinkedList<T>
 - [ ] ObservableCollection<T>
 - [ ] ReadOnlyCollection<T>
-- [ ] Concurrent collections
-- [ ] LINQ with collections
+- [*] Concurrent collections
+- [*] LINQ with collections
 
 ## 7. File Handling & IO
 - [*] File vs FileStream
