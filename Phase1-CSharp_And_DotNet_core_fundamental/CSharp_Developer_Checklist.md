@@ -109,7 +109,7 @@ Will not go through these
 - [*] Joins
 - [*] Deferred execution
 - [ ] PLINQ (Parallel LINQ) // skipping for now,  it is use for parallel operation by assigning diff    thread
-- [ ] LINQ with Collections, XML, EF
+- [*] LINQ with Collections, XML, EF
 
 ## 10. Modern C# Features (C# 7+)
 - [ ] Pattern matching (`is`, `switch` expressions, relational patterns)

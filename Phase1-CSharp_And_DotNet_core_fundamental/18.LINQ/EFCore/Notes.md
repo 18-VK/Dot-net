@@ -1,10 +1,10 @@
 As we have seen that we can use LINQ with in-Memory collection and with XML/JSON
-There are one for use case of it, that is use for querying relation DB. 
+There are one for use case of it, that is use for querying relational DB. 
 
 ORM (Object–Relational Mapping)
 -------------------------------
-ORM (Object–Relational Mapping) is a technique that maps objects in your programming language (like C#classes) to 
-tables in a relational database (like SQL Server, MySQL, PostgreSQL, etc.).
+ORM (Object–Relational Mapping) is a technique that maps objects in your programming language (like C#classes) 
+to tables in a relational database (like SQL Server, MySQL, PostgreSQL, etc.).
 
 It allows you to work with database data as regular C# objects, instead of manually writing SQL queries.
 
@@ -62,19 +62,20 @@ Install EF Core to use in Application
 --------------------------------------
 Link : https://www.tektutorialshub.com/entity-framework-core/ef-core-console-application/
 
-The Microsoft.EntityFrameworkCore is the core library. But installing that alone is not sufficient. We also need to 
-install the EF Core database provider(s). There are many different database Providers currently available with the EF
-Core. 
+The Microsoft.EntityFrameworkCore is the core library. But installing that alone is not sufficient. We also 
+need to install the EF Core database provider(s). There are many different database Providers currently 
+available with the EF Core. 
 
-For Example, to use the SQL Server, we need to install the Microsoft.EntityFrameworkCore.SqlServer. For SQLite install
-the Microsoft.EntityFrameworkCore.Sqlite. When we install the database provider(s), they automatically install the 
-Microsoft.EntityFrameworkCore.
+For Example, to use the SQL Server, we need to install the Microsoft.EntityFrameworkCore.SqlServer. For SQLite 
+install the Microsoft.EntityFrameworkCore.Sqlite. When we install the database provider(s), they automatically 
+install the  Microsoft.EntityFrameworkCore.
 
 Note : we can add it through NuGet Package Manager
 
 Modeling the database
 ----------------------
-EF Core performs data access using a model. A model is nothing but a POCO class. In EF Core we call them entity class.
+EF Core performs data access using a model. A model is nothing but a POCO class. In EF Core we call them entity 
+class.
 
 The EF Core maps these entity classes to a table in the database.
 
@@ -130,18 +131,21 @@ namespace EFCore.Models
 
 # DbSet
 
-Creating the Model (Entity Type) is not sufficient to map it to the database. We must create a DbSet property for each Model in the context class. EF Core includes only those types, which have a DbSet property in the model.
+Creating the Model (Entity Type) is not sufficient to map it to the database. We must create a DbSet property 
+for each Model in the context class. EF Core includes only those types, which have a DbSet property in the 
+model.
 
-The DBSet Provides methods like Add, Attach, remove, etc on the Entity Types. The Context class maps these operations into a SQL query and runs it against the database using the Database Providers.
+The DBSet Provides methods like Add, Attach, remove, etc on the Entity Types. The Context class maps these 
+operations into a SQL query and runs it against the database using the Database Providers.
 
 e.g : 
 public DbSet<Product> Products { get; set; }
 
 Creating the database
 ----------------------
-Now, our model is ready. The model has one entity type Product. We have created EFContext class to manage the Model. We
-have defined the DbSet Property of the Product so that it is included in the Model. Now it is time to create the
-database.
+Now, our model is ready. The model has one entity type Product. We have created EFContext class to manage the 
+Model. We have defined the DbSet Property of the Product so that it is included in the Model. Now it is time to 
+create the database.
 
 In Entity Framework Core, we use Migrations to create the database.
 
@@ -155,15 +159,15 @@ Click on Tools – > NuGet Package Manager > Package Manager Console to open the
 
 cmd :  Add-Migration “NewDatabase”
 
-The Add-Migration generates the instructions to generate the SQL commands to update the underlying database to match
-the model. You can see that the three files are created and added under the Migrations folder.
+The Add-Migration generates the instructions to generate the SQL commands to update the underlying database to 
+match the model. You can see that the three files are created and added under the Migrations folder.
 
 2) The next step is to create the database using the Migrations from the previous step.
 
 - Open the Package Manager Console and run the command Update-Database.
-- The update-database uses the migrations to generate the SQL Queries to update the database. If the database does not
-exist it will create it. It uses the connection string provided while configuring the DBContext to connect to the
-database.
+- The update-database uses the migrations to generate the SQL Queries to update the database. If the database 
+does not exist it will create it. It uses the connection string provided while configuring the DBContext to
+connect to the database.
 
 now check the database name given in connection string, it will have new tables and all the we defined in model
 
@@ -173,12 +177,12 @@ Down() → removes tables/columns/constraints (used when rolling back)
 
 CRUD Operations
 ---------------
-Let us now add simple create/read/update & delete operations on the Product Entity model and persist the data to the
-database.
+Let us now add simple create/read/update & delete operations on the Product Entity model and persist the data 
+to the database.
 
 # Inserting Data
-Inserting to the database is handled by the SaveChanges method of the DBContext object.  To do that, you need to follow
-these steps.
+Inserting to the database is handled by the SaveChanges method of the DBContext object.  To do that, you need 
+to follow these steps.
 
 - Create a new instance of the DbContext class.
 using (var db = new EFContext())
@@ -216,12 +220,13 @@ using (var db = new EFContext())
 }
 
 # Querying the Data
-The queries are written against the Dbset property of the entity.  The queries are written using the LINQ to Entities
-API. There are two ways in which you can write queries in LINQ. One is method syntax & the other one is Query Syntax.
+The queries are written against the Dbset property of the entity.  The queries are written using the LINQ to 
+Entities API. There are two ways in which you can write queries in LINQ. One is method syntax & the other one 
+is Query Syntax.
 
-The following example code retrieves the Product using the Method Syntax. It uses the ToList() method of the DbSet. The
-ToList() sends the select query to the database and retrieves and convert the result into a List of Products as shown
-below. 
+The following example code retrieves the Product using the Method Syntax. It uses the ToList() method of the 
+DbSet. The ToList() sends the select query to the database and retrieves and convert the result into a List of 
+Products as shown below. 
 
 e.g :  
 using System.Linq;
@@ -244,8 +249,8 @@ static void readProduct()
 # Update the Record
 The following code shows how to update a single entity.
 
-First, we use the find method to retrieve the single Product. The find method takes the id (primary key) of the product
-as the argument and retrieves the product from the database and maps it into the Product entity.
+First, we use the find method to retrieve the single Product. The find method takes the id (primary key) of the 
+product as the argument and retrieves the product from the database and maps it into the Product entity.
 
 Next, we update the Product entity.
 
@@ -265,7 +270,8 @@ static void updateProduct()
 # Delete the Record
 The following code demonstrates how to delete the record from the database.
 
-Deleting is done using the Remove method of the DbSet. We need to pass the entity to delete as the argument to the remove method as shown below
+Deleting is done using the Remove method of the DbSet. We need to pass the entity to delete as the argument to 
+the remove method as shown below
  
 static void deleteProduct()
 {
@@ -287,22 +293,23 @@ Note : to delete first we have to get the entity then call remove..
 
 # Primary Key Convention
 
-Entity Framework Core does not allow you to create the tables without the primary key. It follows the convention to
-identify the candidate for the Primary Key. It searches any property with the name ID or <className>ID and uses it as
-Primary Key.
+Entity Framework Core does not allow you to create the tables without the primary key. It follows the
+convention to identify the candidate for the Primary Key. It searches any property with the name ID or 
+<className>ID and uses it as Primary Key.
 
 If the model contains both id & <className>ID columns, then id is chosen as Primary key
 
-If you do not specify the primary key, then the add-migration will throw an error. For Example, try to remove the id
-field from the customerAddress table and check. You will get the following error
+If you do not specify the primary key, then the add-migration will throw an error. For Example, try to remove 
+the id field from the customerAddress table and check. You will get the following error
 
 # Foreign Key Convention
-In relational databases, data is divided between related tables. The relationship between these tables defined using 
-the foreign keys. if you are looking for an employee working in a particular department, then you need to specify the
-relationship between employees and department table.
+In relational databases, data is divided between related tables. The relationship between these tables defined 
+using the foreign keys. if you are looking for an employee working in a particular department, then you need to 
+specify the relationship between employees and department table.
 
 - One to many Relationship
-An Employee belongs to a Department. A Department can have many employees. This is a One to many relationships. This relationship is captured by adding the reference to the Department table in Employee model as shown below
+An Employee belongs to a Department. A Department can have many employees. This is a One to many relationships. 
+This relationship is captured by adding the reference to the Department table in Employee model as shown below
 
 Let us create models to handle
 
@@ -319,8 +326,8 @@ public class Department
   public string DepartmentName { get; set; }
 }
  
-The one to many relations can also be specified in another way. For Example in the following model we just removed the
-department property from Employee table and moved it as the collection of employees in the department table
+The one to many relations can also be specified in another way. For Example in the following model we just 
+removed the department property from Employee table and moved it as the collection of employees in the department table
 
  
 public class Employee
@@ -457,8 +464,8 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         .WithMany(c => c.Students)
         .UsingEntity(j => j.ToTable("Enrollments")); // configure join table name
 }
-Note : We'll breakdown above function, In specific topic called 'Configuration', for now, we can simple say, it is 
-       defining many-to-many relationship and renaming automatically created join table as "Enrollments"
+Note : We'll breakdown above function, In specific topic called 'Configuration', for now, we can simple say, it 
+is defining many-to-many relationship and renaming automatically created join table as "Enrollments"
        
 Pros
 - Very concise — less code.
@@ -471,7 +478,8 @@ Cons
 
 # Explicit join table (explicit join entity class)
 
-Use this when the relationship has payload (extra properties) or you want to treat the join as an entity (audit fields, soft delete, status, etc.).
+Use this when the relationship has payload (extra properties) or you want to treat the join as an entity (audit 
+fields, soft delete, status, etc.).
 
 C# classes (explicit join entity Enrollment)
 public class Student
@@ -538,3 +546,50 @@ Because for one-to-one or one-to-many relationship, A simple FK column is enough
 Indexes
 --------
 Indexes for Foreign key is automatically created by the EF Core
+
+Can create Explicitly : 
+
+1) Using Fluent API (Recommended Way)
+
+public class Employee
+{
+    public int Id { get; set; }
+
+    public string EmployeeCode { get; set; } = "";
+
+    public string Email { get; set; } = "";
+}
+
+Now define index in OnModelCreating() inside your DbContext:
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    // Create a regular index
+    modelBuilder.Entity<Employee>()
+        .HasIndex(e => e.Email);
+
+    // Create a unique index
+    modelBuilder.Entity<Employee>()
+        .HasIndex(e => e.EmployeeCode)
+        .IsUnique();
+}
+
+Composite index : 
+
+If you frequently query multiple columns together:
+
+modelBuilder.Entity<Employee>()
+    .HasIndex(e => new { e.EmployeeCode, e.Email });
+
+2) Using Data Annotation (since EF Core 5.0+)
+
+You can also use [Index] attribute.
+
+[Index(nameof(Email))]
+[Index(nameof(EmployeeCode), IsUnique = true)]
+public class Employee
+{
+    public int Id { get; set; }
+    public string EmployeeCode { get; set; } = "";
+    public string Email { get; set; } = "";
+}

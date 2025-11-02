@@ -9,7 +9,9 @@ namespace EFCorePractice.Models
 {
     public class EFContext : DbContext
     {
+
         //  "Server=192.168.1.100;Database=MyDatabase;Trusted_Connection=True;";
+        // "Server=localhost;Database=SchoolDB;User Id=sa;Password=MySecurePassword123;"
         string ConnectionString = "Server=LAPTOP-0DCLBA10\\SQLEXPRESS;Database=SysDBPractice;Trusted_Connection=True;Encrypt=False;";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
