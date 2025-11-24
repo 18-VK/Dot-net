@@ -363,6 +363,21 @@ Script-Migration -Output "C:\Scripts\MyMigration.sql"
 
 EF Core will create the .sql file containing all the generated commands.
 
+Note : usually you must run Add-Migration before Script-Migration.
+
+Because:
+- Add-Migration creates a new migration file (C# code).
+- Script-Migration generates SQL scripts from existing migrations.
+
+If you don’t create a migration first, there’s nothing for EF Core to script.
+
+Idempotent (in database migrations) means:
+------------------------------------------
+- You can run the SQL script multiple times without causing errors
+- It applies only the migrations that have not yet been applied
+- It is safe to execute on any environment (dev / test / staging / prod) regardless of its current migration 
+state.
+
 # EF Core Database First. Reverse Engineering the Database (scaffolding)
 
 The EF core only supports Code First & Database First approach. In Database First, We use the 
@@ -399,6 +414,10 @@ connection string & database provider to this command.
 | **`-DataAnnotations`**  | Use data annotation attributes (like `[Key]`, `[Table]`, `[ForeignKey]`) instead of only Fluent API configuration. |
 | **`-UseDatabaseNames`** | Keeps the original database table and column names instead of applying EF Core naming conventions.                 |
 | **`-Force`**            | Overwrites existing files in the output folders if they already exist.
+
+Syntax : 
+Scaffold-DbContext "Server=.;Database=SchoolDB;User Id=sa;Password=MyPassword;" Microsoft.EntityFrameworkCore.
+SqlServer -OutputDir Models
 
 
 Common Example
@@ -491,3 +510,39 @@ To enable our new model to work under migrations you need to follow these steps
   against your DB
 
 That’s it.
+
+SQL Raw Query 
+--------------
+Examples showing how to run parameterized raw SQL that returns entities with EF Core, and the safe ways to pass 
+parameters (so you avoid SQL injection).
+
+- FromSqlInterpolated (recommended for readability)
+- FromSqlRaw with DbParameter (explicit parameters)
+
+Example 1 : 
+using var ctx = new AppDbContext();
+
+  // Safe: parameters are automatically turned into SQL parameters
+  var products = await ctx.Products
+      .FromSqlInterpolated($@"
+          SELECT Id, Name, Price
+          FROM Products
+          WHERE Price > {minPrice}
+      ")
+      .ToListAsync();
+
+Example 2 :
+
+using var ctx = new AppDbContext();
+
+var param = new SqlParameter("@name", SqlDbType.NVarChar, 200) { Value = name };
+
+var product = await ctx.Products
+    .FromSqlRaw(@"
+        SELECT Id, Name, Price
+        FROM Products
+        WHERE Name = @name
+    ", param)                           // pass DbParameter(s) here
+    .FirstOrDefaultAsync();
+
+Note : Aysnc is not mandatory, added just to make it more efficient for large data..

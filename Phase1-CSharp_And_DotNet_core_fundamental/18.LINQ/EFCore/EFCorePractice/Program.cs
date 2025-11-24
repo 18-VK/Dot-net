@@ -1,5 +1,5 @@
-﻿using System;
-using EFCorePractice.Models;
+﻿using EFCorePractice.Models;
+using System;
 
 namespace EFCorePractice
 {
@@ -8,33 +8,64 @@ namespace EFCorePractice
         public static void Main(string[] args)
         {
             //CURD operation 
-            using(var DB = new EFContext())
+            using(var DBConext = new EFContext())
             {
+                /*
                 //Insert 
-                Product ObjProd = new Product() { Name = "CMF Buds 2", Price = 1799.00M};
-                DB.Products.Add(ObjProd);
-
-                DB.SaveChanges();
+                Product? ObjProd = new Product() { Name ="Ryzen5", Description = "5Gen processor", Category = "Computer" };
+                Product? ObjProd1 = new Product() { Name = "Ryzen7", Description = "7Gen processor", Category = "Computer" };
+                DBConext.Products.Add(ObjProd);
+                DBConext.Products.Add(ObjProd1);
+                DBConext.SaveChanges();
 
                 //Read 
-                List<Product> ProductsList = DB.Products.ToList();
+                ObjProd = null;
+                ObjProd = DBConext.Products.Select(P => P).Where(P => P.Name == "Ryzen5").FirstOrDefault();
 
-                //Update  
-                Product? Prod1 = DB.Products.Where(P => P.Name == "CMF Buds 2").FirstOrDefault();
-                if (Prod1 != null)
+                //Update 
+                if (ObjProd != null)
                 {
-                    Prod1.Price = 1899.00M;
-                    DB.SaveChanges();
+
+                    ObjProd.Name = "Intel I5";
+                    DBConext.Update(ObjProd);
+                    DBConext.SaveChanges();                }
+
+                // delete 
+                if (ObjProd != null)
+                {
+
+                    DBConext.Products.Remove(ObjProd);
+                    DBConext.SaveChanges();
                 }
-                // Delete 
-                // Prod1 
-                DB.Products.Remove(Prod1);
-                DB.SaveChanges();
+                */
 
-                ProductsList = DB.Products.ToList();
+                // Practice 2 
+                // One to many relation 
+                /* 
+                Blog ObjBlog = new Blog() { Title = "Test cricket" };
+                ObjBlog.posts.Add(new Post { Title = "IndVsAus 2018/2019" });
+                ObjBlog.posts.Add(new Post { Title = "IndVsAus 2020/2021" });
 
+                DBConext.Blogs.Add(ObjBlog);
+                DBConext.SaveChanges();
+                */
+
+                // try to delete.. 
+                Blog ObjBlog = DBConext.Blogs.Find(1);
+                if (ObjBlog != null)
+                {
+                    try
+                    {
+                        DBConext.Remove(ObjBlog);
+                        DBConext.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.InnerException.Message);
+                    }
+                    
+                }
             }
-
         }
     }
 }

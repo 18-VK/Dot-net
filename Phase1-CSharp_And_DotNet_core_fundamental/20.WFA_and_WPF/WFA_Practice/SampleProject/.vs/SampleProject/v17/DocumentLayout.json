@@ -1,0 +1,65 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\20.WFA_and_WPF\\WFA_Practice\\SampleProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A3656B0D-8474-4921-BB19-3B373E41933F}|SampleProject.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\20.wfa_and_wpf\\wfa_practice\\sampleproject\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A3656B0D-8474-4921-BB19-3B373E41933F}|SampleProject.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3656B0D-8474-4921-BB19-3B373E41933F}|SampleProject.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\20.wfa_and_wpf\\wfa_practice\\sampleproject\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3656B0D-8474-4921-BB19-3B373E41933F}|SampleProject.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\20.WFA_and_WPF\\WFA_Practice\\SampleProject\\MainForm.cs",
+              "RelativeDocumentMoniker": "MainForm.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\20.WFA_and_WPF\\WFA_Practice\\SampleProject\\MainForm.cs",
+              "RelativeToolTip": "MainForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T11:30:23.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\20.WFA_and_WPF\\WFA_Practice\\SampleProject\\MainForm.cs",
+              "RelativeDocumentMoniker": "MainForm.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\20.WFA_and_WPF\\WFA_Practice\\SampleProject\\MainForm.cs [Design]",
+              "RelativeToolTip": "MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T11:25:38.286Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

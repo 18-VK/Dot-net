@@ -7,24 +7,44 @@
       "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\models\\efcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:models\\efcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\models\\efcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:models\\efcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\models\\blogwithpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:models\\blogwithpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251106174446_Added One_to_one Relation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20251106174446_Added One_to_one Relation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\migrations\\efcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:migrations\\efcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\migrations\\20251026111619_addproducttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:migrations\\20251026111619_addproducttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\migrations\\20251105173359_updatedenity_myaddingconstrainst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:migrations\\20251105173359_updatedenity_myaddingconstrainst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\efcorepractice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:efcorepractice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251105180247_Order_table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20251105180247_Order_table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\migrations\\20251104182753_updated primary key.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:migrations\\20251104182753_updated primary key.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|e:\\dot net\\phase1-csharp_and_dotnet_core_fundamental\\18.linq\\efcore\\efcorepractice\\migrations\\20251104182217_addproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D3FF646E-2E4A-469A-BA88-0C6CFB55F696}|EFCorePractice.csproj|solutionrelative:migrations\\20251104182217_addproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,73 +57,55 @@
           "SelectedChildIndex": 6,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "20251106174446_Added One_to_one Relation.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251106174446_Added One_to_one Relation.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251106174446_Added One_to_one Relation.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251106174446_Added One_to_one Relation.cs",
+              "RelativeToolTip": "Migrations\\20251106174446_Added One_to_one Relation.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T17:44:47.267Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "EFContextModelSnapshot.cs",
-              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\EFContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "Migrations\\EFContextModelSnapshot.cs",
-              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\EFContextModelSnapshot.cs",
-              "RelativeToolTip": "Migrations\\EFContextModelSnapshot.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Title": "BlogWithPost.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\BlogWithPost.cs",
+              "RelativeDocumentMoniker": "Models\\BlogWithPost.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\BlogWithPost.cs",
+              "RelativeToolTip": "Models\\BlogWithPost.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAA4AAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-26T11:17:41.969Z",
+              "WhenOpened": "2025-11-06T17:27:34.263Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "20251026111619_AddProductTable.cs",
-              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251026111619_AddProductTable.cs",
-              "RelativeDocumentMoniker": "Migrations\\20251026111619_AddProductTable.cs",
-              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251026111619_AddProductTable.cs",
-              "RelativeToolTip": "Migrations\\20251026111619_AddProductTable.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBgAAAATAAAAAAAAAA==",
+              "Title": "Order.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "Models\\Order.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\Order.cs",
+              "RelativeToolTip": "Models\\Order.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-26T11:16:32.337Z",
+              "WhenOpened": "2025-11-05T17:46:19.463Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EFContext.cs",
-              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\EFContext.cs",
-              "RelativeDocumentMoniker": "Models\\EFContext.cs",
-              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\EFContext.cs",
-              "RelativeToolTip": "Models\\EFContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-26T11:04:12.64Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Product.cs",
-              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\Product.cs",
-              "RelativeDocumentMoniker": "Models\\Product.cs",
-              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\Product.cs",
-              "RelativeToolTip": "Models\\Product.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-26T10:23:40.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EFCorePractice",
-              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\EFCorePractice.csproj",
-              "RelativeDocumentMoniker": "EFCorePractice.csproj",
-              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\EFCorePractice.csproj",
-              "RelativeToolTip": "EFCorePractice.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-26T10:21:29.73Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Document",
@@ -113,18 +115,101 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAADwvxIAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAADQAAAAAAAAAAAAwwD8AAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-26T10:21:00.638Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EFContextModelSnapshot.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\EFContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "Migrations\\EFContextModelSnapshot.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\EFContextModelSnapshot.cs",
+              "RelativeToolTip": "Migrations\\EFContextModelSnapshot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T18:28:25.851Z",
+              "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Product.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Models\\Product.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\Product.cs",
+              "RelativeToolTip": "Models\\Product.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAgwA8AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T18:01:44.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EFContext.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\EFContext.cs",
+              "RelativeDocumentMoniker": "Models\\EFContext.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Models\\EFContext.cs",
+              "RelativeToolTip": "Models\\EFContext.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAABUAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T18:02:11.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "20251105173359_UpdatedEnity_MyAddingConstrainst.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251105173359_UpdatedEnity_MyAddingConstrainst.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251105173359_UpdatedEnity_MyAddingConstrainst.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251105173359_UpdatedEnity_MyAddingConstrainst.cs",
+              "RelativeToolTip": "Migrations\\20251105173359_UpdatedEnity_MyAddingConstrainst.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwB4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T17:33:59.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "20251105180247_Order_table.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251105180247_Order_table.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251105180247_Order_table.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251105180247_Order_table.cs",
+              "RelativeToolTip": "Migrations\\20251105180247_Order_table.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T18:02:47.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "20251104182753_Updated Primary Key.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251104182753_Updated Primary Key.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251104182753_Updated Primary Key.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251104182753_Updated Primary Key.cs",
+              "RelativeToolTip": "Migrations\\20251104182753_Updated Primary Key.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T18:27:54.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "20251104182217_Addproduct.cs",
+              "DocumentMoniker": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251104182217_Addproduct.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251104182217_Addproduct.cs",
+              "ToolTip": "E:\\Dot net\\Phase1-CSharp_And_DotNet_core_fundamental\\18.LINQ\\EFCore\\EFCorePractice\\Migrations\\20251104182217_Addproduct.cs",
+              "RelativeToolTip": "Migrations\\20251104182217_Addproduct.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T18:28:11.681Z",
+              "EditorCaption": ""
             }
           ]
         }

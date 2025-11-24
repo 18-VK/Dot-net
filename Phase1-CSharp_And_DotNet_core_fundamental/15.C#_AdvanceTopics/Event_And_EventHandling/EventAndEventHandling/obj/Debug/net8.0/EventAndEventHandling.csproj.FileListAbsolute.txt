@@ -1,0 +1,15 @@
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\bin\Debug\net8.0\EventAndEventHandling.exe
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\bin\Debug\net8.0\EventAndEventHandling.deps.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\bin\Debug\net8.0\EventAndEventHandling.runtimeconfig.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\bin\Debug\net8.0\EventAndEventHandling.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\bin\Debug\net8.0\EventAndEventHandling.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\EventAndEventHandling.GeneratedMSBuildEditorConfig.editorconfig
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\EventAndEventHandling.AssemblyInfoInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\EventAndEventHandling.AssemblyInfo.cs
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\EventAndEventHandling.csproj.CoreCompileInputs.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\EventAndEventHandling.sourcelink.json
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\EventAndEventHandling.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\refint\EventAndEventHandling.dll
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\EventAndEventHandling.pdb
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\EventAndEventHandling.genruntimeconfig.cache
+E:\Dot net\Phase1-CSharp_And_DotNet_core_fundamental\15.C#_AdvanceTopics\Event_And_EventHandling\EventAndEventHandling\obj\Debug\net8.0\ref\EventAndEventHandling.dll

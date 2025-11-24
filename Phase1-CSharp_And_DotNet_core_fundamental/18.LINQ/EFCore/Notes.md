@@ -593,3 +593,45 @@ public class Employee
     public string EmployeeCode { get; set; } = "";
     public string Email { get; set; } = "";
 }
+
+Extra : 
+
+- [Timestamp] (or .IsRowVersion()) tells EF Core this byte[] property is a concurrency token. On SQL Server EF 
+maps it to rowversion type and the DB updates it automatically whenever the row changes.
+- The concurrency check is performed by including the token in the WHERE clause of UPDATE / DELETE. If the row 
+has been modified (token changed) the UPDATE affects 0 rows and EF throws DbUpdateConcurrencyException.
+- You can handle the exception to implement optimistic concurrency patterns:
+- Retry the operation after reloading the entity, or
+- Merge client changes with database values and retry, or
+- Surface a user-friendly message (e.g., “Someone else changed this record; review changes?”).
+
+
+What is AsNoTracking()?
+-----------------------
+By default, when you query entities using EF Core, the Change Tracker keeps track of them — meaning EF Core watches for any modifications so it can 
+persist them later via SaveChanges().
+
+When you use AsNoTracking(), EF Core bypasses tracking — it retrieves the data only, without monitoring changes
+
+| Mode               | Tracked by EF? | Memory usage | Can be Updated via `SaveChanges()`? |
+| ------------------ | -------------- | ------------ | ----------------------------------- |
+| Default (Tracking) | ✅ Yes          | High         | ✅ Yes                               |
+| `AsNoTracking()`   | ❌ No           | Low          | ❌ No                                |
+
+example :
+
+using (var context = new AppDbContext())
+{
+    // Normal tracked query
+    var trackedCustomer = context.Customers.FirstOrDefault(c => c.Id == 1);
+    trackedCustomer.Name = "Updated Name";
+    context.SaveChanges();  // ✅ Works — entity is tracked
+
+    // No-tracking query
+    var untrackedCustomer = context.Customers
+                                   .AsNoTracking()
+                                   .FirstOrDefault(c => c.Id == 2);
+
+    untrackedCustomer.Name = "Won’t be saved";
+    context.SaveChanges();  // ❌ No effect — not tracked
+}

@@ -22,7 +22,7 @@
 - [*] Partial classes
 - [*] Sealed classes
 - [*] Structs vs Classes
-- [ ] Records (C# 9+)
+- [*] Records (C# 9+)
 - [*] Abstract classes & methods
 - [*] Interfaces & default implementations
 - [*] Virtual, override, new, sealed, base
@@ -32,7 +32,7 @@
 
 ## 3. Advanced C# Concepts
 - [*] Delegates (`Action`, `Func`, `Predicate`)
-- [ ] Events & event handlers
+- [*] Events & event handlers
 - [*] Callbacks (with & without lambdas)
 - [*] Lambda expressions & expression-bodied members
 - [*] Anonymous methods
@@ -112,28 +112,28 @@ Will not go through these
 - [*] LINQ with Collections, XML, EF
 
 ## 10. Modern C# Features (C# 7+)
-- [ ] Pattern matching (`is`, `switch` expressions, relational patterns)
-- [ ] Local functions
-- [ ] Default interface methods
-- [ ] Records (C# 9)
-- [ ] Init-only setters
-- [ ] Nullable reference types
-- [ ] Target-typed `new`
-- [ ] Global usings
-- [ ] Top-level statements
-- [ ] Required properties (C# 11)
+- [*] Pattern matching (`is`, `switch` expressions, relational patterns)
+- [*] Local functions
+- [*] Default interface methods
+- [*] Records (C# 9)
+- [*] Init-only setters
+- [*] Nullable reference types
+- [*] Target-typed `new`
+- [*] Global usings
+- [*] Top-level statements
+- [*] Required properties (C# 11)
 
 ## 11. Design & Architecture
 - [ ] SOLID principles
-- [ ] Dependency Injection (DI)
+- [*] Dependency Injection (DI)
 - [ ] Inversion of Control (IoC)
 - [ ] Repository & Unit of Work pattern
 - [ ] Factory pattern
 - [ ] Singleton pattern
 - [ ] Observer pattern
 - [ ] Strategy pattern
-- [ ] Event-driven programming
-- [ ] Loose vs Tight coupling
+- [*] Event-driven programming
+- [*] Loose vs Tight coupling(Can check DI Tutorial for this)
 
 ## 12. Testing & Debugging
 - [ ] Debugging in Visual Studio
@@ -143,18 +143,18 @@ Will not go through these
 - [ ] Logging (`ILogger`, Serilog, NLog)
 
 ## 13. .NET & Framework Integration
-- [ ] .NET Core vs .NET Framework vs .NET 5+
+- [*] .NET Core vs .NET Framework vs .NET 5+
 - [ ] CLR, CTS, CLS
 - [ ] JIT Compilation
 - [ ] Assemblies & GAC
-- [ ] Namespaces
-- [ ] NuGet package management
+- [*] Namespaces
+- [*] NuGet package management
 
 ## 14. Miscellaneous
-- [ ] String interpolation (`$""`)
-- [ ] Environment variables
-- [ ] Command-line arguments
-- [ ] Config management (`appsettings.json`)
+- [*] String interpolation (`$""`)
+- [*] Environment variables
+- [*] Command-line arguments
+- [*] Config management (`appsettings.json`)
 - [ ] Globalization & Localization
 - [ ] Security basics (hashing, encryption)
 - [ ] Networking (`HttpClient`, sockets)
