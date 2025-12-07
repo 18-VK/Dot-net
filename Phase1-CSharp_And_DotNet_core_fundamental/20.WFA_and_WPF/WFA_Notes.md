@@ -567,9 +567,10 @@ set its Text, then drag other controls into it.
 
 16) Panel
 
-Overview: A Panel is a generic container for other controls. It’s similar to a GroupBox (groups controls), but by default it has no caption, and it can have scroll bars if the contents are larger than the panel
-learn.microsoft.com
-Panels are often used to subdivide a form (e.g. a left panel for navigation, a right panel for content) or to host a scrollable area of controls.
+Overview: A Panel is a generic container for other controls. It’s similar to a GroupBox (groups controls), but 
+by default it has no caption, and it can have scroll bars if the contents are larger than the panel
+Panels are often used to subdivide a form (e.g. a left panel for navigation, a right panel for content) or to 
+host a scrollable area of controls.
 
 Key Properties:
 

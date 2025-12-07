@@ -228,3 +228,133 @@ Web project example (ASP.NET Core — dev only)
   }
 }
 
+# OpenFileDialog and SaveFileDialog 
+
+These are built-in dialog boxes in Windows Forms used to let the user:
+
+✔ Pick a file from the computer → OpenFileDialog
+✔ Choose a location and name to save a file → SaveFileDialog
+
+They are convenient because you don’t need to build your own custom UI for browsing files.
+
+1) OpenFileDialog
+
+> Basic Example: Open a text file and display its content
+
+private void btnOpen_Click(object sender, EventArgs e)
+{
+    using (OpenFileDialog ofd = new OpenFileDialog())
+    {
+        ofd.Title = "Select a Text File";
+        ofd.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+        ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+        if (ofd.ShowDialog() == DialogResult.OK)
+        {
+            string filePath = ofd.FileName;
+            string content = File.ReadAllText(filePath);
+
+            textBox1.Text = content;
+        }
+    }
+}
+What this code does:
+
+- Opens a file browser window
+- Allows only .txt or all files
+- If file selected → reads it → displays in textbox
+- using automatically disposes dialog
+
+Some common proerties : 
+
+| Property           | What it does                          |
+| ------------------ | ------------------------------------- |
+| `Filter`           | Restrict file types                   |
+| `InitialDirectory` | Start dialog from Desktop / Documents |
+| `Multiselect`      | Allow selecting multiple files        |
+| `Title`            | Set dialog title                      |
+| `CheckFileExists`  | Default true — ensures real files     |
+
+> Advanced Example: Select multiple images
+private void btnSelectImages_Click(object sender, EventArgs e)
+{
+    OpenFileDialog ofd = new OpenFileDialog();
+    ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+    ofd.Multiselect = true;
+
+    if (ofd.ShowDialog() == DialogResult.OK)
+    {
+        foreach (string file in ofd.FileNames)
+        {
+            listBox1.Items.Add(file);
+        }
+    }
+}
+
+2) SaveFileDialog (Save files)
+
+> Basic Example: Save text from TextBox to a file
+private void btnSave_Click(object sender, EventArgs e)
+{
+    using (SaveFileDialog sfd = new SaveFileDialog())
+    {
+        sfd.Title = "Save Text File";
+        sfd.Filter = "Text Files (*.txt)|*.txt";
+        sfd.DefaultExt = "txt";
+        sfd.FileName = "MyFile";
+
+        if (sfd.ShowDialog() == DialogResult.OK)
+        {
+            File.WriteAllText(sfd.FileName, textBox1.Text);
+        }
+    }
+}
+
+✔ Explanation:
+
+- Only allow .txt file
+- Default name = “MyFile.txt”
+- Writes content from textbox into selected file
+
+> Advanced Example: Export DataGridView → CSV
+
+private void btnExportCSV_Click(object sender, EventArgs e)
+{
+    SaveFileDialog sfd = new SaveFileDialog();
+    sfd.Filter = "CSV Files (*.csv)|*.csv";
+    sfd.FileName = "export.csv";
+
+    if (sfd.ShowDialog() == DialogResult.OK)
+    {
+        using (StreamWriter sw = new StreamWriter(sfd.FileName))
+        {
+            // Header
+            var header = string.Join(",", 
+                dataGridView1.Columns.Cast<DataGridViewColumn>()
+                .Select(c => c.HeaderText));
+            sw.WriteLine(header);
+
+            // Rows
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    var cells = row.Cells.Cast<DataGridViewCell>()
+                        .Select(c => c.Value?.ToString()?.Replace(",", " "));
+                    sw.WriteLine(string.Join(",", cells));
+                }
+            }
+        }
+    }
+}
+
+Filter 
+-------
+Format:
+
+Description | extension | description | extension
+
+Example:
+
+ofd.Filter = "Text Files (*.txt)|*.txt|Images (*.png;*.jpg)|*.png;*.jpg|All Files|*.*";
+

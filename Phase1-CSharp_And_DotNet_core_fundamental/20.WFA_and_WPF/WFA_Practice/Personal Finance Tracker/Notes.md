@@ -1,0 +1,69 @@
+z# SR No 
+there are two clean ways to handle this depending on how you show the SR No. in your DataGridView.
+
+Recommended (and simplest): don’t store SR in data — render it dynamically (RowPostPaint or row header).
+Alternative: if SR is a real column you must keep in the data, insert/update that value when adding/removing 
+rows.
+
+Below I give both approaches with copy-paste code and tips so you can pick the one that matches your app.
+
+Option A — Best practice: Show SR dynamically (no data change)
+---------------------------------------------------------------
+Add a normal data row (no SR value), and use RowPostPaint or RowHeader to show the serial number. This avoids 
+keeping SR in your model and always stays correct after sorting/filtering.
+
+Setup (RowPostPaint into first column cell)
+
+Assume Column 0 is reserved for SR (read-only), but you don't store SR in your data:
+
+// Hook this once (e.g., in Form_Load)
+dataGridView1.RowPostPaint += DataGridView1_RowPostPaint;
+
+private void DataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+{
+    // Option A1: draw on row header (no SR column needed)
+    var grid = (DataGridView)sender;
+    string rowNumber = (e.RowIndex + 1).ToString();
+    var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+    TextRenderer.DrawText(e.Graphics, rowNumber, grid.RowHeadersDefaultCellStyle.Font, headerBounds, grid.RowHeadersDefaultCellStyle.ForeColor, TextFormatFlags.VerticalCenter | TextFormatFlags.Right);
+
+    // Option A2: if you DO have a cell (col 0) reserved for SR and want text there:
+    // grid.Rows[e.RowIndex].Cells[0].Value = rowNumber;
+}
+
+Add a row (no SR in data):
+
+string[] dataArr = new[] { "John", "john@example.com" }; // matches actual columns (excluding SR)
+dataGridView1.Rows.Add(dataArr); // SR will be rendered automatically
+
+Pros: always correct after insert/delete/sort/filter, no need to update SR values.
+Use when: SR is display-only.
+
+Option B — SR is an actual column in grid/data
+-----------------------------------------------
+If your grid contains an SR column that must be part of the rows (e.g. you export SR to CSV), you must populate/maintain it.
+
+1) If adding rows manually (unbound grid)
+// Suppose col0 is SR, then Name, Email...
+int nextSr = dataGridView1.Rows.Count + 1; // (if AllowUserToAddRows=false)
+object[] rowWithSr = new object[] { nextSr, "John", "john@example.com" };
+dataGridView1.Rows.Add(rowWithSr);
+
+
+After deletes, re-generate SRs:
+
+private void UpdateSerialNumbers()
+{
+    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+    {
+        // skip new row if present
+        if (dataGridView1.Rows[i].IsNewRow) continue;
+        dataGridView1.Rows[i].Cells["SrColumn"].Value = (i + 1);
+    }
+}
+
+
+Hook it up:
+
+dataGridView1.RowsAdded += (s,e) => UpdateSerialNumbers();
+dataGridView1.RowsRemoved += (s,e) => UpdateSerialNumbers();
