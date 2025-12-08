@@ -17,11 +17,27 @@ namespace Personal_Finance_Tracker
         public const int SourceDB = 1;
         public const int SourceImportFile = 2;
         public static string? MCurrentCSV { get; set; }
+        private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show("UI Exception: " + e.Exception.Message);
+            // log it if needed
+        }
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var ex = e.ExceptionObject as Exception;
+            MessageBox.Show("Non-UI Exception: " + ex?.Message);
+        }
         [STAThread]
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+
+            // Catch ALL UI thread exceptions
+            Application.ThreadException += Application_ThreadException;
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            // Catch ALL non-UI thread exceptions
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
         }

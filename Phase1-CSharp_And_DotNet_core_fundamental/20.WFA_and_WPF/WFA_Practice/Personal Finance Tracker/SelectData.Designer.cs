@@ -40,7 +40,7 @@ namespace Personal_Finance_Tracker
             lbl = new Label();
             dateTimePicker1 = new DateTimePicker();
             comboBoxType = new ComboBox();
-            textBox1 = new TextBox();
+            textBoxAmt = new TextBox();
             comboBoxCategory = new ComboBox();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -112,7 +112,7 @@ namespace Personal_Finance_Tracker
             tableLayoutPanel3.Controls.Add(lbl, 0, 2);
             tableLayoutPanel3.Controls.Add(dateTimePicker1, 1, 3);
             tableLayoutPanel3.Controls.Add(comboBoxType, 1, 1);
-            tableLayoutPanel3.Controls.Add(textBox1, 1, 0);
+            tableLayoutPanel3.Controls.Add(textBoxAmt, 1, 0);
             tableLayoutPanel3.Controls.Add(comboBoxCategory, 1, 2);
             tableLayoutPanel3.Location = new Point(3, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -181,18 +181,20 @@ namespace Personal_Finance_Tracker
             comboBoxType.Size = new Size(150, 29);
             comboBoxType.TabIndex = 5;
             // 
-            // textBox1
+            // textBoxAmt
             // 
-            textBox1.Anchor = AnchorStyles.None;
-            textBox1.Location = new Point(244, 20);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 29);
-            textBox1.TabIndex = 6;
+            textBoxAmt.Anchor = AnchorStyles.None;
+            textBoxAmt.Location = new Point(244, 20);
+            textBoxAmt.Name = "textBoxAmt";
+            textBoxAmt.Size = new Size(150, 29);
+            textBoxAmt.TabIndex = 6;
+            textBoxAmt.Validating += textBoxAmt_Validating;
             // 
             // comboBoxCategory
             // 
             comboBoxCategory.Anchor = AnchorStyles.None;
             comboBoxCategory.FormattingEnabled = true;
+            comboBoxCategory.Items.AddRange(new object[] { "Electronics", "Grocery", "Pharmacy", "Automobile" });
             comboBoxCategory.Location = new Point(244, 158);
             comboBoxCategory.Name = "comboBoxCategory";
             comboBoxCategory.Size = new Size(151, 29);
@@ -218,6 +220,7 @@ namespace Personal_Finance_Tracker
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         #endregion
@@ -231,9 +234,9 @@ namespace Personal_Finance_Tracker
         private Label lblType;
         private Label lblDate;
         private Label lbl;
-        private DateTimePicker dateTimePicker1;
-        private ComboBox comboBoxType;
-        private TextBox textBox1;
-        private ComboBox comboBoxCategory;
+        public DateTimePicker dateTimePicker1;
+        public ComboBox comboBoxType;
+        public TextBox textBoxAmt;
+        public ComboBox comboBoxCategory;
     }
 }

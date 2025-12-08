@@ -67,3 +67,33 @@ Hook it up:
 
 dataGridView1.RowsAdded += (s,e) => UpdateSerialNumbers();
 dataGridView1.RowsRemoved += (s,e) => UpdateSerialNumbers();
+
+# Issue 
+
+
+Yes — Program.TransactionData.Clear() can definitely cause issues depending on how the list is being used in your WinForms app.
+
+Let me explain clearly.
+
+✅ 1. If the List is bound to DataGridView → YES, it WILL cause issues
+
+Example:
+
+dataGridViewMain.DataSource = Program.TransactionData;
+Program.TransactionData.Clear();
+
+
+When you call Clear(), the underlying collection changes but DataGridView does NOT automatically refresh, and:
+
+DataGridView still thinks rows exist
+
+But list has 0 items
+
+So DataGridView tries to repaint old cells → IndexOutOfRangeException
+
+This is a very common DataGridView exception.
+
+✔ Fix 1 — Reset DataSource properly
+dataGridViewMain.DataSource = null;
+Program.TransactionData.Clear();
+dataGridViewMain.DataSource = Program.TransactionData;

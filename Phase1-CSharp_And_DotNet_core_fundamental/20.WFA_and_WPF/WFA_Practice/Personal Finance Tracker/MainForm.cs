@@ -1,9 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Personal_Finance_Tracker.Model;
 using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
+using System.Linq;
 using System.Transactions;
 using System.Windows.Forms;
-using Personal_Finance_Tracker.Model;
-using System.Linq;
 
 namespace Personal_Finance_Tracker
 {
@@ -15,17 +18,97 @@ namespace Personal_Finance_Tracker
         IDX_Date,
         IDX_Type,
     };
+    
     public partial class MainForm : Form
     {
+
+        public void RefreshGrid()
+        {
+            dataGridViewMain.Refresh();
+        }
+
+        public void ClearGrid()
+        {
+            dataGridViewMain.DataSource = null;
+            Program.TransactionData.Clear();
+            dataGridViewMain.DataSource = Program.TransactionData;
+        }
+        public void ReassignDataSource()
+        {
+            //Why: DataGridView keeps a reference to the old list instance; assigning a new List<T> does NOT update the grid unless you reassign the DataSource.
+            dataGridViewMain.DataSource = null;
+            dataGridViewMain.DataSource = Program.TransactionData;
+        }
         private void UpdateSerialNumbers()
         {
             for (int i = 0; i < dataGridViewMain.Rows.Count; i++)
             {
                 // skip new row if present
                 if (dataGridViewMain.Rows[i].IsNewRow) continue;
-                dataGridViewMain.Rows[i].Cells["SR No"].Value = (i + 1);
+                dataGridViewMain.Rows[i].Cells["DataGridColSRNo"].Value = (i + 1);
             }
         }
+        public async Task<bool> ReadDBForRecord()
+        {
+            const int cancellationSeconds = 5;
+            const int commandTimeoutSeconds = 10; // >= cancellationSeconds
+
+            try
+            {
+                using var db = new EFContext();
+
+                if (!db.Database.CanConnect())
+                {
+                    MessageBox.Show("Cannot connect to database.");
+                    return false;
+                }
+
+                // Ensure server/client timeouts are sane
+                db.Database.SetCommandTimeout(commandTimeoutSeconds);
+
+                var query = db.TableTransactions
+                              .AsNoTracking()
+                              .OrderBy(t => t.Id)
+                              .Take(1024);
+
+                using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(cancellationSeconds));
+
+                List<ClsTransaction> transData;
+                try
+                {
+                    transData = await query.ToListAsync(cts.Token);
+                }
+                catch (OperationCanceledException oce)
+                {
+                    MessageBox.Show("Database read was cancelled (operation timeout).");
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception : " + ex.Message,"Read Database");
+                    return false;
+                }
+
+                // update global lists safely
+                Program.SourceTransactionData = transData ?? new List<ClsTransaction>();
+                Program.TransactionData = new List<ClsTransaction>(Program.SourceTransactionData);
+                ReassignDataSource();
+                RefreshGrid();
+                
+                if (transData?.Count == 0)
+                {
+                    MessageBox.Show("No records found!","Read Database");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception : " + ex.Message);
+                return false;
+            }
+
+            return true;
+        }
+
 
         public async Task<bool> ReadCSVFileAndUpdatGrid(string filename)
         {
@@ -34,9 +117,9 @@ namespace Personal_Finance_Tracker
             ClsTransaction? transaction = null;
             //Clear Grid, by resting data source as here we are using data source to maintain 
             // Grid 
-            Program.TransactionData.Clear();
+            ClearGrid();
             Program.SourceTransactionData.Clear();
-            dataGridViewMain.Refresh();
+            RefreshGrid();
             try
             {
 
@@ -192,46 +275,48 @@ namespace Personal_Finance_Tracker
         private void viewSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // View Summary will represent whole data from given source
-            Program.TransactionData.Clear();
+            ClearGrid();
             if (Program.SourceTransactionData.Count <= 0)
             {
                 MessageBox.Show("No Transaction data \n Please read data from Database or by importing CSV");
-                dataGridViewMain.Refresh();
+                RefreshGrid();
                 return;
             }
             foreach (var list in Program.SourceTransactionData)
             {
                 Program.TransactionData.Add(list);
             }
-            dataGridViewMain.Refresh();
+            RefreshGrid();
         }
 
         private void IncomeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // This will filter Data by type : Income only 
-            Program.TransactionData.Clear();
+            ClearGrid();
             if (Program.SourceTransactionData.Count <= 0)
             {
                 MessageBox.Show("No Transaction data \n Please read data from Database or by importing CSV");
-                dataGridViewMain.Refresh();
+                RefreshGrid();
                 return;
             }
             Program.TransactionData = (List<ClsTransaction>)Program.SourceTransactionData.Where(R => R?.Type?.ToUpper()?.Trim() == "INCOME").ToList();
-            dataGridViewMain.Refresh();
+            ReassignDataSource();
+            RefreshGrid();
         }
 
         private void expenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // This will filter Data by type : expense only 
-            Program.TransactionData.Clear();
+            ClearGrid();
             if (Program.SourceTransactionData.Count <= 0)
             {
                 MessageBox.Show("No Transaction data \n Please read data from Database or by importing CSV");
-                dataGridViewMain.Refresh();
+                RefreshGrid();
                 return;
             }
             Program.TransactionData = (List<ClsTransaction>)Program.SourceTransactionData.Where(R => R?.Type?.ToUpper()?.Trim() == "EXPENSE").ToList();
-            dataGridViewMain.Refresh();
+            ReassignDataSource();
+            RefreshGrid();
         }
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -243,7 +328,7 @@ namespace Personal_Finance_Tracker
             }
         }
 
-        private void BtnRefresh_Click(object sender, EventArgs e)
+        private async void BtnRefresh_Click(object sender, EventArgs e)
         {
             // If Import csv and have file name
             if(Program.SourceOfData == Program.SourceImportFile && File.Exists(Program.MCurrentCSV))
@@ -274,10 +359,79 @@ namespace Personal_Finance_Tracker
                     if (SD.RbtnReadOpReadDB.Checked)
                     {
                         // read from db 
+                        var result = await ReadDBForRecord();
+                        if (!result)
+                            MessageBox.Show("Error while data from Database");
+                        
                         return;
                     }
                 }
             }
+        }
+        private async void BtnAdd_Click(object sender, EventArgs e)
+        {
+            using (var SF = new SelectData())
+            {
+
+                if (SF != null)
+                {
+                    const int cancellationSeconds = 5;
+                    const int commandTimeoutSeconds = 10; // >= cancellationSeconds
+
+                    if (SF.ShowDialog(this) == DialogResult.OK)
+                    {
+                        // Add Row..
+                        decimal Amt;
+                        string type = String.Empty, cat = String.Empty;
+                        DateTime Date;
+
+                        decimal.TryParse(SF.textBoxAmt.Text, out Amt);
+                        type = SF.comboBoxType.Text;
+                        cat = SF.comboBoxCategory.Text;
+                        Date = SF.dateTimePicker1.Value;
+
+                        ClsTransaction obj = new ClsTransaction
+                        {
+                            Amount = Amt,
+                            Type = type,
+                            Category = cat,
+                            Date = Date
+                        };
+                        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(cancellationSeconds));
+                        try
+                        {
+
+                            using (var DBConext = new EFContext())
+                            {
+                                if (!DBConext.Database.CanConnect())
+                                {
+                                    MessageBox.Show("Can't connect to Database");
+                                    return;
+                                }
+                                DBConext.Database.SetCommandTimeout(commandTimeoutSeconds);
+
+                                var result = await DBConext.TableTransactions.AddAsync(obj,cts.Token);
+                                if(result.State != EntityState.Added)
+                                {
+                                    MessageBox.Show("Record not added", "Add record");
+                                    return;
+                                }
+
+                                if (DBConext.SaveChanges() <=0)
+                                {
+                                    MessageBox.Show("Record not Inserted in Database", "Add record");
+                                    return;
+                                }
+                            }
+                        }catch(Exception ex)
+                        {
+                            MessageBox.Show("Exception : " + ex.Message, "Add record");
+                        }
+
+                    }
+                }
+            }
+            return;
         }
     }
 }

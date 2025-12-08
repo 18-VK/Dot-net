@@ -1,4 +1,5 @@
 ﻿
+using Personal_Finance_Tracker.Model;
 using System.Windows.Forms;
 namespace Personal_Finance_Tracker
 {
@@ -58,22 +59,18 @@ namespace Personal_Finance_Tracker
             amountDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             typeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            transactionBindingSource = new BindingSource(components);
             tableLayoutPanel1 = new TableLayoutPanel();
             button2 = new Button();
             BtnRefresh = new Button();
             BtnAdd = new Button();
             BtnUpdate = new Button();
             BtnDelete = new Button();
-            transactionBindingSource1 = new BindingSource(components);
             menuStripMain.SuspendLayout();
             statusStripMain.SuspendLayout();
             tableLayoutOuter.SuspendLayout();
             tableLayoutPanelInner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewMain).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)transactionBindingSource).BeginInit();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)transactionBindingSource1).BeginInit();
             SuspendLayout();
             // 
             // menuStripMain
@@ -247,7 +244,7 @@ namespace Personal_Finance_Tracker
             dataGridViewMain.AutoGenerateColumns = false;
             dataGridViewMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMain.Columns.AddRange(new DataGridViewColumn[] { DataGridColSRNo, idDataGridViewTextBoxColumn, categoryDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, typeDataGridViewTextBoxColumn });
-            dataGridViewMain.DataSource = transactionBindingSource;
+            dataGridViewMain.DataSource = Program.TransactionData;
             dataGridViewMain.Dock = DockStyle.Fill;
             dataGridViewMain.Location = new Point(56, 3);
             dataGridViewMain.Name = "dataGridViewMain";
@@ -256,6 +253,9 @@ namespace Personal_Finance_Tracker
             dataGridViewMain.RowHeadersWidth = 51;
             dataGridViewMain.Size = new Size(962, 375);
             dataGridViewMain.TabIndex = 0;
+            dataGridViewMain.RowsAdded += dataGridViewMain_RowsAdded;
+            dataGridViewMain.RowsRemoved += dataGridViewMain_RowsRemoved;
+            dataGridViewMain.Sorted += dataGridViewMain_Sorted;
             // 
             // DataGridColSRNo
             // 
@@ -311,9 +311,6 @@ namespace Personal_Finance_Tracker
             typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
             typeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // transactionBindingSource
-            // 
-            transactionBindingSource.DataSource = typeof(Model.ClsTransaction);
             // 
             // tableLayoutPanel1
             // 
@@ -390,9 +387,6 @@ namespace Personal_Finance_Tracker
             BtnDelete.Text = "Delete/Remove";
             BtnDelete.UseVisualStyleBackColor = true;
             // 
-            // transactionBindingSource1
-            // 
-            transactionBindingSource1.DataSource = typeof(Model.ClsTransaction);
             // 
             // MainForm
             // 
@@ -414,28 +408,9 @@ namespace Personal_Finance_Tracker
             tableLayoutOuter.ResumeLayout(false);
             tableLayoutPanelInner.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewMain).EndInit();
-            ((System.ComponentModel.ISupportInitialize)transactionBindingSource).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)transactionBindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
-        }
-
-        private void BtnAdd_Click(object sender, EventArgs e)
-        {
-            using (var SF = new SelectData())
-            {
-
-                if (SF != null)
-                {
-                   
-                    if (SF.ShowDialog(this) == DialogResult.OK)
-                    {
-                        // update 
-                    
-                    }
-                }
-            }
         }
 
         #endregion
@@ -467,8 +442,6 @@ namespace Personal_Finance_Tracker
         private Button BtnUpdate;
         private Button BtnDelete;
         private ToolStripMenuItem viewSummaryToolStripMenuItem;
-        private BindingSource transactionBindingSource;
-        private BindingSource transactionBindingSource1;
         private DataGridViewTextBoxColumn DataGridColSRNo;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
