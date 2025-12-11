@@ -635,3 +635,105 @@ using (var context = new AppDbContext())
     untrackedCustomer.Name = "Won’t be saved";
     context.SaveChanges();  // ❌ No effect — not tracked
 }
+
+
+# Bulk delete and update 
+
+## delete
+1. LINQ Only (In-Memory Collection Delete Multiple)
+
+Use RemoveAll:
+
+myList.RemoveAll(x => x.Status == "Expired");
+
+OR manually:
+
+foreach (var item in myList.Where(x => x.Status == "Expired").ToList())
+{
+    myList.Remove(item);
+}
+
+Note: LINQ itself does NOT delete — you apply a filter then manually remove.
+
+2. EF Core 7+ — Best Method (ExecuteDelete)
+
+Deletes directly in SQL without loading entities.
+
+await db.Transactions
+    .Where(t => t.Type == "INCOME")
+    .ExecuteDeleteAsync();
+
+
+⚡ Fastest
+⚡ No tracking needed
+⚡ Single SQL DELETE
+⚡ Best for large data
+
+3. EF Core 6 or below — Standard Method
+
+You must load the entities, then remove them.
+
+var items = db.Transactions
+              .Where(t => t.Type == "INCOME")
+              .ToList();
+
+db.Transactions.RemoveRange(items);
+await db.SaveChangesAsync();
+
+4. Delete multiple when you only have IDs
+If you have a list of IDs:
+var ids = new List<int> { 1, 2, 3 };
+
+var items = db.Transactions.Where(t => ids.Contains(t.Id));
+db.Transactions.RemoveRange(items);
+
+await db.SaveChangesAsync();
+
+5. High-performance bulk delete (10K–1M rows)
+
+If you use EFCore.BulkExtensions:
+
+await db.BulkDeleteAsync(
+    db.Transactions.Where(t => t.Type == "INCOME").ToList()
+);
+
+
+## Update
+
+1. EF Core — Update Multiple Rows (Correct way)
+
+EF Core does not support bulk update via pure LINQ (except EF 7's ExecuteUpdate).
+
+✔ Option A — EF Core 7+ (Best way)
+
+Bulk update without loading data.
+
+await db.Transactions
+    .Where(t => t.Type == "Income")
+    .ExecuteUpdateAsync(setters => setters
+        .SetProperty(t => t.Amount, t => t.Amount + 100)
+        .SetProperty(t => t.UpdatedAt, t => DateTime.Now)
+    );
+
+✔ Option B — EF Core 6 and below (Loop update & SaveChanges)
+
+If ExecuteUpdate is not available:
+
+var items = db.Transactions
+             .Where(t => t.Type == "Income")
+             .ToList();
+
+foreach (var item in items)
+{
+    item.Amount += 100;
+    item.UpdatedAt = DateTime.Now;
+}
+
+await db.SaveChangesAsync();
+
+2. Best & fastest: Bulk Create + Bulk Update
+
+If performance matters (10k+ rows), use EFCore.BulkExtensions:
+
+await db.BulkInsertAsync(newRecords);
+await db.BulkUpdateAsync(existingRecords);

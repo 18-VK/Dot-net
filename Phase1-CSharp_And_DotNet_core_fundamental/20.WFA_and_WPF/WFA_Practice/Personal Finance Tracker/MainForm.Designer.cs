@@ -205,6 +205,7 @@ namespace Personal_Finance_Tracker
             toolStripStatusLblCurrVal.RightToLeft = RightToLeft.No;
             toolStripStatusLblCurrVal.Size = new Size(133, 34);
             toolStripStatusLblCurrVal.Spring = true;
+            toolStripStatusLblCurrVal.Text = "10-12-2025";
             // 
             // tableLayoutOuter
             // 
@@ -244,7 +245,6 @@ namespace Personal_Finance_Tracker
             dataGridViewMain.AutoGenerateColumns = false;
             dataGridViewMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMain.Columns.AddRange(new DataGridViewColumn[] { DataGridColSRNo, idDataGridViewTextBoxColumn, categoryDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, typeDataGridViewTextBoxColumn });
-            dataGridViewMain.DataSource = Program.TransactionData;
             dataGridViewMain.Dock = DockStyle.Fill;
             dataGridViewMain.Location = new Point(56, 3);
             dataGridViewMain.Name = "dataGridViewMain";
@@ -255,7 +255,8 @@ namespace Personal_Finance_Tracker
             dataGridViewMain.TabIndex = 0;
             dataGridViewMain.RowsAdded += dataGridViewMain_RowsAdded;
             dataGridViewMain.RowsRemoved += dataGridViewMain_RowsRemoved;
-            dataGridViewMain.Sorted += dataGridViewMain_Sorted;
+            dataGridViewMain.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewMain.MultiSelect = false;
             // 
             // DataGridColSRNo
             // 
@@ -310,7 +311,6 @@ namespace Personal_Finance_Tracker
             typeDataGridViewTextBoxColumn.MinimumWidth = 6;
             typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
             typeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // 
             // tableLayoutPanel1
             // 
@@ -376,6 +376,7 @@ namespace Personal_Finance_Tracker
             BtnUpdate.TabIndex = 4;
             BtnUpdate.Text = "Edit/Update";
             BtnUpdate.UseVisualStyleBackColor = true;
+            BtnUpdate.Click += BtnUpdate_Click;
             // 
             // BtnDelete
             // 
@@ -386,7 +387,7 @@ namespace Personal_Finance_Tracker
             BtnDelete.TabIndex = 5;
             BtnDelete.Text = "Delete/Remove";
             BtnDelete.UseVisualStyleBackColor = true;
-            // 
+            BtnDelete.Click += BtnDelete_Click;
             // 
             // MainForm
             // 

@@ -18,7 +18,7 @@ namespace Personal_Finance_Tracker
         IDX_Date,
         IDX_Type,
     };
-    
+
     public partial class MainForm : Form
     {
 
@@ -85,7 +85,7 @@ namespace Personal_Finance_Tracker
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Exception : " + ex.Message,"Read Database");
+                    MessageBox.Show("Exception : " + ex.Message, "Read Database");
                     return false;
                 }
 
@@ -94,10 +94,10 @@ namespace Personal_Finance_Tracker
                 Program.TransactionData = new List<ClsTransaction>(Program.SourceTransactionData);
                 ReassignDataSource();
                 RefreshGrid();
-                
+
                 if (transData?.Count == 0)
                 {
-                    MessageBox.Show("No records found!","Read Database");
+                    MessageBox.Show("No records found!", "Read Database");
                 }
             }
             catch (Exception ex)
@@ -223,8 +223,8 @@ namespace Personal_Finance_Tracker
                 SaveD.Title = "Select CSV File";
                 SaveD.Filter = "CSV file (*.CSV)|*.CSV";
                 SaveD.InitialDirectory = Directory.GetCurrentDirectory();
-                SaveD.CheckFileExists = true;
-                SaveD.FileName = $"Transactions_{DateTime.Now}.csv";
+                SaveD.CheckFileExists = false;
+                SaveD.FileName = $"Transactions_{DateTime.Now.ToString("ddMMyyyyHHmmss")}.csv";
 
                 if (SaveD.ShowDialog() == DialogResult.OK)
                 {
@@ -256,15 +256,21 @@ namespace Personal_Finance_Tracker
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Request cancelled by user", "Export CSV");
+                }
             }
         }
         private void dataGridViewMain_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
+            toolStripStatusLabelNumRecVal.Text = dataGridViewMain.RowCount.ToString();
             UpdateSerialNumbers();
         }
 
         private void dataGridViewMain_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
+            toolStripStatusLabelNumRecVal.Text = dataGridViewMain.RowCount.ToString();
             UpdateSerialNumbers();
         }
         private void dataGridViewMain_Sorted(object sender, EventArgs e)
@@ -331,7 +337,7 @@ namespace Personal_Finance_Tracker
         private async void BtnRefresh_Click(object sender, EventArgs e)
         {
             // If Import csv and have file name
-            if(Program.SourceOfData == Program.SourceImportFile && File.Exists(Program.MCurrentCSV))
+            if (Program.SourceOfData == Program.SourceImportFile && File.Exists(Program.MCurrentCSV))
             {
                 // refresh require
                 var result = MessageBox.Show($"Want to get updated daat from given file \n File name : {Program.MCurrentCSV}");
@@ -362,7 +368,7 @@ namespace Personal_Finance_Tracker
                         var result = await ReadDBForRecord();
                         if (!result)
                             MessageBox.Show("Error while data from Database");
-                        
+
                         return;
                     }
                 }
@@ -410,26 +416,143 @@ namespace Personal_Finance_Tracker
                                 }
                                 DBConext.Database.SetCommandTimeout(commandTimeoutSeconds);
 
-                                var result = await DBConext.TableTransactions.AddAsync(obj,cts.Token);
-                                if(result.State != EntityState.Added)
+                                var result = await DBConext.TableTransactions.AddAsync(obj, cts.Token);
+                                if (result.State != EntityState.Added)
                                 {
                                     MessageBox.Show("Record not added", "Add record");
                                     return;
                                 }
 
-                                if (DBConext.SaveChanges() <=0)
+                                if (DBConext.SaveChanges() <= 0)
                                 {
                                     MessageBox.Show("Record not Inserted in Database", "Add record");
                                     return;
                                 }
                             }
-                        }catch(Exception ex)
+                        }
+                        catch (Exception ex)
                         {
                             MessageBox.Show("Exception : " + ex.Message, "Add record");
                         }
 
                     }
                 }
+            }
+            return;
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewMain.SelectedRows.Count == 1)
+            {
+                using (var SF = new SelectData())
+                {
+                    try
+                    {
+
+                        if (SF != null)
+                        {
+                            var row = dataGridViewMain.SelectedRows[0];
+
+                            SF.comboBoxType.Text = row.Cells["typeDataGridViewTextBoxColumn"]?.Value?.ToString();
+                            SF.comboBoxCategory.Text = row.Cells["categoryDataGridViewTextBoxColumn"]?.Value?.ToString();
+                            SF.dateTimePicker1.Value = row.Cells["dateDataGridViewTextBoxColumn"]?.Value != null ? (DateTime)row.Cells["dateDataGridViewTextBoxColumn"]?.Value : SF.dateTimePicker1.Value;
+                            SF.textBoxAmt.Text = row.Cells["amountDataGridViewTextBoxColumn"]?.Value?.ToString();
+
+                            var RecordId = (int)row.Cells["idDataGridViewTextBoxColumn"].Value;
+
+                            if (SF.ShowDialog(this) == DialogResult.OK)
+                            {
+                                if (SF.DialogResult == DialogResult.OK)
+                                {
+                                    // Find record in collection 
+                                    using (var EFContext = new EFContext())
+                                    {
+                                        decimal amt;
+                                        var Record = EFContext.TableTransactions.Where(T => T.Id == RecordId).FirstOrDefault();
+
+                                        if (Record != null)
+                                        {
+                                            Record.Date = SF.dateTimePicker1.Value;
+                                            Record.Type = SF.comboBoxType.Text;
+
+                                            decimal.TryParse(SF.textBoxAmt.Text, out amt);
+                                            Record.Amount = amt;
+                                            Record.Category = SF.comboBoxCategory.Text;
+
+                                            //Update into DB 
+                                            EFContext.TableTransactions.Update(Record);
+                                            var result = EFContext.SaveChanges();
+                                            if (result != 0)
+                                                MessageBox.Show("Record Updated..", "Edit/Update");
+                                            else
+                                                MessageBox.Show("Record Updatation failed", "Edit/Update");
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Unexpected error, record not found in collection", "Edit/Update");
+                                        }
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Request cancelled by user", "Edit/Update");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Exception Caught : " + ex.Message, "Edit/Update");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to do operation on that", "Edit/Update");
+            }
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (dataGridViewMain.SelectedRows.Count == 1)
+                {
+                    var row = dataGridViewMain.SelectedRows[0];
+                    var RecordID = (int)row.Cells["idDataGridViewTextBoxColumn"].Value;
+                    if (row != null)
+                    {
+                        using (var EFcontext = new EFContext())
+                        {
+
+                            var Record = EFcontext.TableTransactions.Where(T => T.Id == RecordID).FirstOrDefault();
+                            if (Record != null)
+                            {
+                                EFcontext.TableTransactions.Remove(Record);
+                                if (EFcontext.SaveChanges() > 0)
+                                    MessageBox.Show("Record deleted", "Delete/remove");
+                                else
+                                    MessageBox.Show("Record deletion failed", "Delete/remove");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Unexpected result : Record not found in collection", "Delete/remove");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a row to do operation on that", "Delete/Remove");
+                }
+            }
+            catch (Exception EX)
+            {
+                MessageBox.Show("Exception caught : " + EX.Message, "Delete/Remove");
             }
             return;
         }
