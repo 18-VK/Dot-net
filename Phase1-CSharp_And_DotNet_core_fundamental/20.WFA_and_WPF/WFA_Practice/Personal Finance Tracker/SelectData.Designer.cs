@@ -194,7 +194,7 @@ namespace Personal_Finance_Tracker
             // 
             comboBoxCategory.Anchor = AnchorStyles.None;
             comboBoxCategory.FormattingEnabled = true;
-            comboBoxCategory.Items.AddRange(new object[] { "Electronics", "Grocery", "Pharmacy", "Automobile" });
+            comboBoxCategory.Items.AddRange(new object[] { "Electronics", "Grocery", "Pharmacy", "Automobile", "Rent", "Salary", "Travel", "Utility" });
             comboBoxCategory.Location = new Point(244, 158);
             comboBoxCategory.Name = "comboBoxCategory";
             comboBoxCategory.Size = new Size(151, 29);

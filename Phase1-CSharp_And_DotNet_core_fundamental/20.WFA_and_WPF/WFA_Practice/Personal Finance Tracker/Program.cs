@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Personal_Finance_Tracker.Model;
 
 namespace Personal_Finance_Tracker
@@ -16,7 +19,12 @@ namespace Personal_Finance_Tracker
         public static int SourceOfData = 1; // default by DB
         public const int SourceDB = 1;
         public const int SourceImportFile = 2;
+        public static ulong mLastDBRecord;
+        public const int PageSize = 1024;
         public static string? MCurrentCSV { get; set; }
+
+        // public static IConfiguration _config { get; set; } can also use this..
+
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             MessageBox.Show("UI Exception: " + e.Exception.Message);
@@ -28,10 +36,19 @@ namespace Personal_Finance_Tracker
             MessageBox.Show("Non-UI Exception: " + ex?.Message);
         }
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            // Config builder, Production type set up 
+
+            var host = Host.CreateDefaultBuilder()
+               .ConfigureServices((context, services) =>
+               {
+                   
+                   services.AddSingleton<IConfiguration>(context.Configuration);
+                   services.AddTransient<MainForm>();
+               })
+           .Build();
+
 
             // Catch ALL UI thread exceptions
             Application.ThreadException += Application_ThreadException;
@@ -39,7 +56,8 @@ namespace Personal_Finance_Tracker
             // Catch ALL non-UI thread exceptions
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            //Application.Run(new MainForm()); instead of this IDE Generated code 
+            Application.Run(host.Services.GetRequiredService<MainForm>());
         }
 
     }

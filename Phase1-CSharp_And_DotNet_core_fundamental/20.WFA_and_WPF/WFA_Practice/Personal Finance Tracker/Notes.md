@@ -97,3 +97,46 @@ This is a very common DataGridView exception.
 dataGridViewMain.DataSource = null;
 Program.TransactionData.Clear();
 dataGridViewMain.DataSource = Program.TransactionData;
+
+
+# Keyset paging (RECOMMENDED for large data), for reading records
+
+If Id is monotonically increasing (PK), use this instead.
+
+First page
+int lastId = 0;
+
+var page1 = await db.TableTransactions
+    .AsNoTracking()
+    .Where(t => t.Id > lastId)
+    .OrderBy(t => t.Id)
+    .Take(1024)
+    .ToListAsync();
+
+lastId = page1.LastOrDefault()?.Id ?? lastId;
+
+Next page
+var page2 = await db.TableTransactions
+    .AsNoTracking()
+    .Where(t => t.Id > lastId)
+    .OrderBy(t => t.Id)
+    .Take(1024)
+    .ToListAsync();
+
+lastId = page2.LastOrDefault()?.Id ?? lastId;
+
+Stop condition
+if (page2.Count < 1024)
+{
+    // no more records
+}
+
+Which should YOU use?
+---------------------
+
+| Case                    | Use           |
+| ----------------------- | ------------- |
+| Small table             | Skip + Take   |
+| Large table (10k+)      | Keyset paging |
+| Continuous scrolling    | Keyset paging |
+| Stable sorting required | Keyset paging |

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Personal_Finance_Tracker.Model;
 using System;
 using System.ComponentModel;
@@ -22,6 +23,8 @@ namespace Personal_Finance_Tracker
     public partial class MainForm : Form
     {
 
+        static Boolean _IsLoading = false;
+        private string? _Connectionstring = string.Empty;
         public void RefreshGrid()
         {
             dataGridViewMain.Refresh();
@@ -38,6 +41,23 @@ namespace Personal_Finance_Tracker
             //Why: DataGridView keeps a reference to the old list instance; assigning a new List<T> does NOT update the grid unless you reassign the DataSource.
             dataGridViewMain.DataSource = null;
             dataGridViewMain.DataSource = Program.TransactionData;
+            // update date range in status 
+            if (Program.TransactionData != null)
+            {
+                if (Program.TransactionData.Count > 0)
+                {
+                    var first = Program.TransactionData.First();
+                    var last = Program.TransactionData.Last();
+
+                    if (first != null && last != null) 
+                        toolStripStatusLabelDateRVal.Text = first.Date.ToString("dd/MM/yyyy") + " To " + last.Date.ToString("dd/MM/yyyy");
+                }
+            }
+            if (Program.SourceTransactionData != null)
+            {
+                var obj = Program.SourceTransactionData.LastOrDefault();
+                Program.mLastDBRecord = obj == null ? 0 : Convert.ToUInt64(obj.Id);
+            }
         }
         private void UpdateSerialNumbers()
         {
@@ -48,14 +68,16 @@ namespace Personal_Finance_Tracker
                 dataGridViewMain.Rows[i].Cells["DataGridColSRNo"].Value = (i + 1);
             }
         }
-        public async Task<bool> ReadDBForRecord()
+        public async Task<bool> ReadDBForRecord(Boolean IsForScrolling)
         {
             const int cancellationSeconds = 5;
             const int commandTimeoutSeconds = 10; // >= cancellationSeconds
 
+           
+
             try
             {
-                using var db = new EFContext();
+                using var db = new EFContext(_Connectionstring);
 
                 if (!db.Database.CanConnect())
                 {
@@ -65,12 +87,23 @@ namespace Personal_Finance_Tracker
 
                 // Ensure server/client timeouts are sane
                 db.Database.SetCommandTimeout(commandTimeoutSeconds);
+                IQueryable<ClsTransaction> query;
 
-                var query = db.TableTransactions
+                if (IsForScrolling) // loading more records
+                {
+                   query = db.TableTransactions
                               .AsNoTracking()
                               .OrderBy(t => t.Id)
-                              .Take(1024);
-
+                              .Where(t => t.Id > Program.mLastDBRecord)
+                              .Take(Program.PageSize);
+                }
+                else // first time read
+                {
+                    query = db.TableTransactions
+                              .AsNoTracking()
+                              .OrderBy(t => t.Id)
+                              .Take(Program.PageSize);
+                }
                 using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(cancellationSeconds));
 
                 List<ClsTransaction> transData;
@@ -90,8 +123,16 @@ namespace Personal_Finance_Tracker
                 }
 
                 // update global lists safely
-                Program.SourceTransactionData = transData ?? new List<ClsTransaction>();
-                Program.TransactionData = new List<ClsTransaction>(Program.SourceTransactionData);
+                if (Program.SourceTransactionData.Any())
+                    Program.SourceTransactionData.AddRange(transData ?? new List<ClsTransaction>()); // if transdata is null then add blank list
+                else
+                    Program.SourceTransactionData = transData ?? new List<ClsTransaction>();
+
+                if (Program.TransactionData.Any())
+                    Program.TransactionData.AddRange(transData ?? new List<ClsTransaction>()); // if transdata is null then add blank list
+                else
+                    Program.TransactionData = new List<ClsTransaction>(Program.SourceTransactionData);
+                
                 ReassignDataSource();
                 RefreshGrid();
 
@@ -161,11 +202,11 @@ namespace Personal_Finance_Tracker
                         dataArr = val.Split(',');
                         transaction = new ClsTransaction
                         {
-                            Id = (int)dataArr[(int)GridEnum.IDX_RecID],
-                            Amount = (decimal)dataArr[(int)GridEnum.IDX_Amt],
-                            Category = (string)dataArr[(int)GridEnum.IDX_Cat],
-                            Date = (DateTime)dataArr[(int)GridEnum.IDX_Date],
-                            Type = (string)dataArr[(int)GridEnum.IDX_Type]
+                            Id = dataArr[(int)GridEnum.IDX_RecID] == null ? default(ulong) : Convert.ToUInt64(dataArr[(int)GridEnum.IDX_RecID]),
+                            Amount = dataArr[(int)GridEnum.IDX_Amt] == null ? default(decimal) : Convert.ToDecimal(dataArr[(int)GridEnum.IDX_Amt]),
+                            Category = dataArr[(int)GridEnum.IDX_Cat] == null ? default(string) : Convert.ToString(dataArr[(int)GridEnum.IDX_Cat]),
+                            Date = dataArr[(int)GridEnum.IDX_Date] == null ? default(DateTime) : Convert.ToDateTime(dataArr[(int)GridEnum.IDX_Date]),
+                            Type = dataArr[(int)GridEnum.IDX_Type] == null ? default(string) : Convert.ToString(dataArr[(int)GridEnum.IDX_Type]),
                         };
                         // Could add data manually or can use Data source 
                         //dataGridViewMain.Rows.Add(dataArr);
@@ -173,6 +214,8 @@ namespace Personal_Finance_Tracker
                         // In case of data source, but update the datasource 
                         Program.TransactionData.Add(transaction);
                         Program.SourceTransactionData.Add(transaction);
+                        ReassignDataSource();
+                        RefreshGrid();
                     }
                 }
             }
@@ -183,13 +226,14 @@ namespace Personal_Finance_Tracker
             }
             return true;
         }
-        public MainForm()
+        public MainForm(IConfiguration Config)
         {
+            _Connectionstring = Config.GetConnectionString("DefaultConnection");
             Program.SourceOfData = 0;
             InitializeComponent();
         }
 
-        private void toolStripMenuItemImport_Click(object sender, EventArgs e)
+        private async void toolStripMenuItemImport_Click(object sender, EventArgs e)
         {
             using (var OpenD = new OpenFileDialog())
             {
@@ -199,16 +243,19 @@ namespace Personal_Finance_Tracker
                 OpenD.CheckFileExists = true;
                 OpenD.Multiselect = false;
 
-                var filename = OpenD.FileName;
+
 
                 if (OpenD.ShowDialog() == DialogResult.OK)
                 {
                     // Set Source of data as local file 
+                    var filename = OpenD.FileName;
                     Program.SourceOfData = Program.SourceImportFile;
                     Program.MCurrentCSV = filename;
                     // Read line and print in Grid..
-                    if (!ReadCSVFileAndUpdatGrid(filename).Result)
+                    var result = await ReadCSVFileAndUpdatGrid(filename);
+                    if (!result)
                     {
+                        Program.MCurrentCSV = "";
                         MessageBox.Show("Got error while reading data from given file");
                         return;
                     }
@@ -236,6 +283,9 @@ namespace Personal_Finance_Tracker
                         var headerData = "";
                         foreach (DataGridViewColumn col in dataGridViewMain.Columns)
                         {
+                            if (string.Compare(col.Name, "DataGridColSRNo", true) == 0)
+                                continue;
+
                             if (headerData.Length > 0)
                                 headerData += ",";
 
@@ -248,6 +298,8 @@ namespace Personal_Finance_Tracker
                             if (row.IsNewRow) continue;
                             foreach (DataGridViewCell cell in row.Cells)
                             {
+                                if (cell.ColumnIndex == row.Cells["DataGridColSRNo"]?.ColumnIndex)
+                                    continue;
                                 if (rowdata.Length > 0)
                                     rowdata += ",";
                                 rowdata += cell.Value;
@@ -292,6 +344,7 @@ namespace Personal_Finance_Tracker
             {
                 Program.TransactionData.Add(list);
             }
+            ReassignDataSource();
             RefreshGrid();
         }
 
@@ -337,6 +390,9 @@ namespace Personal_Finance_Tracker
         private async void BtnRefresh_Click(object sender, EventArgs e)
         {
             // If Import csv and have file name
+            if (_IsLoading == true)
+                return;
+
             if (Program.SourceOfData == Program.SourceImportFile && File.Exists(Program.MCurrentCSV))
             {
                 // refresh require
@@ -344,12 +400,18 @@ namespace Personal_Finance_Tracker
                 if (result == DialogResult.OK)
                 {
                     // read csv 
-                    if (!ReadCSVFileAndUpdatGrid(Program.MCurrentCSV).Result)
+                    this.Cursor = Cursors.WaitCursor;
+                    var ret = await ReadCSVFileAndUpdatGrid(Program.MCurrentCSV);
+
+                    if (!ret)
                     {
                         MessageBox.Show("Got error while reading data from given file");
+                        _IsLoading = false;
                         return;
                     }
                 }
+                this.Cursor = Cursors.Default;
+                _IsLoading = false;
                 return;
             }
             // select source to read data..
@@ -360,19 +422,24 @@ namespace Personal_Finance_Tracker
                     if (SD.RbtnReadOpsImpCSV.Checked)
                     {
                         toolStripMenuItemImport_Click(sender, e);
+                        _IsLoading = false;
                         return;
                     }
                     if (SD.RbtnReadOpReadDB.Checked)
                     {
                         // read from db 
-                        var result = await ReadDBForRecord();
+                        this.Cursor = Cursors.WaitCursor;
+                        var result = await ReadDBForRecord(false);
                         if (!result)
                             MessageBox.Show("Error while data from Database");
 
+                        _IsLoading = false;
+                        this.Cursor = Cursors.Default;
                         return;
                     }
                 }
             }
+            _IsLoading = false;
         }
         private async void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -386,6 +453,8 @@ namespace Personal_Finance_Tracker
 
                     if (SF.ShowDialog(this) == DialogResult.OK)
                     {
+                        this.Cursor = Cursors.WaitCursor;
+
                         // Add Row..
                         decimal Amt;
                         string type = String.Empty, cat = String.Empty;
@@ -407,11 +476,12 @@ namespace Personal_Finance_Tracker
                         try
                         {
 
-                            using (var DBConext = new EFContext())
+                            using (var DBConext = new EFContext(_Connectionstring))
                             {
                                 if (!DBConext.Database.CanConnect())
                                 {
                                     MessageBox.Show("Can't connect to Database");
+                                    this.Cursor = Cursors.Default;
                                     return;
                                 }
                                 DBConext.Database.SetCommandTimeout(commandTimeoutSeconds);
@@ -420,12 +490,14 @@ namespace Personal_Finance_Tracker
                                 if (result.State != EntityState.Added)
                                 {
                                     MessageBox.Show("Record not added", "Add record");
+                                    this.Cursor = Cursors.Default;
                                     return;
                                 }
 
                                 if (DBConext.SaveChanges() <= 0)
                                 {
                                     MessageBox.Show("Record not Inserted in Database", "Add record");
+                                    this.Cursor = Cursors.Default;
                                     return;
                                 }
                             }
@@ -438,6 +510,7 @@ namespace Personal_Finance_Tracker
                     }
                 }
             }
+            this.Cursor = Cursors.Default;
             return;
         }
 
@@ -459,14 +532,15 @@ namespace Personal_Finance_Tracker
                             SF.dateTimePicker1.Value = row.Cells["dateDataGridViewTextBoxColumn"]?.Value != null ? (DateTime)row.Cells["dateDataGridViewTextBoxColumn"]?.Value : SF.dateTimePicker1.Value;
                             SF.textBoxAmt.Text = row.Cells["amountDataGridViewTextBoxColumn"]?.Value?.ToString();
 
-                            var RecordId = (int)row.Cells["idDataGridViewTextBoxColumn"].Value;
+                            var RecordId = (ulong)row.Cells["idDataGridViewTextBoxColumn"].Value;
 
                             if (SF.ShowDialog(this) == DialogResult.OK)
                             {
+                                this.Cursor = Cursors.WaitCursor;
                                 if (SF.DialogResult == DialogResult.OK)
                                 {
                                     // Find record in collection 
-                                    using (var EFContext = new EFContext())
+                                    using (var EFContext = new EFContext(_Connectionstring))
                                     {
                                         decimal amt;
                                         var Record = EFContext.TableTransactions.Where(T => T.Id == RecordId).FirstOrDefault();
@@ -484,7 +558,7 @@ namespace Personal_Finance_Tracker
                                             EFContext.TableTransactions.Update(Record);
                                             var result = EFContext.SaveChanges();
                                             if (result != 0)
-                                                MessageBox.Show("Record Updated..", "Edit/Update");
+                                                MessageBox.Show("Record Updated, Refresh by reading again", "Edit/Update");
                                             else
                                                 MessageBox.Show("Record Updatation failed", "Edit/Update");
                                         }
@@ -505,6 +579,7 @@ namespace Personal_Finance_Tracker
                     catch (Exception ex)
                     {
                         MessageBox.Show("Exception Caught : " + ex.Message, "Edit/Update");
+                        this.Cursor = Cursors.Default;
                         return;
                     }
                 }
@@ -513,20 +588,21 @@ namespace Personal_Finance_Tracker
             {
                 MessageBox.Show("Please select a row to do operation on that", "Edit/Update");
             }
+            this.Cursor = Cursors.Default;
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             try
             {
-
+                this.Cursor = Cursors.WaitCursor;
                 if (dataGridViewMain.SelectedRows.Count == 1)
                 {
                     var row = dataGridViewMain.SelectedRows[0];
-                    var RecordID = (int)row.Cells["idDataGridViewTextBoxColumn"].Value;
+                    var RecordID = (ulong)row.Cells["idDataGridViewTextBoxColumn"].Value;
                     if (row != null)
                     {
-                        using (var EFcontext = new EFContext())
+                        using (var EFcontext = new EFContext(_Connectionstring))
                         {
 
                             var Record = EFcontext.TableTransactions.Where(T => T.Id == RecordID).FirstOrDefault();
@@ -554,6 +630,40 @@ namespace Personal_Finance_Tracker
             {
                 MessageBox.Show("Exception caught : " + EX.Message, "Delete/Remove");
             }
+            this.Cursor = Cursors.Default;
+            return;
+        }
+        private async void dataGridViewMain_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (e.ScrollOrientation != ScrollOrientation.VerticalScroll)
+                return;
+            if (IsScrolledToBottom())
+            {
+                // Read more data
+                _IsLoading = true;
+                await ReadMoreRecords();
+            }
+            return;
+        }
+        private bool IsScrolledToBottom()
+        {
+            if (dataGridViewMain.Rows.Count == 0)
+                return false;
+
+            int firstDisplayedRow = dataGridViewMain.FirstDisplayedScrollingRowIndex;
+            int displayedRowCount = dataGridViewMain.DisplayedRowCount(false);
+
+            return firstDisplayedRow + displayedRowCount >= dataGridViewMain.Rows.Count;
+        }
+        private async Task ReadMoreRecords()
+        {
+            this.Cursor = Cursors.WaitCursor;
+            var result = await ReadDBForRecord(true);
+            if (!result)
+                MessageBox.Show("Error while data from Database");
+
+            _IsLoading = false;
+            this.Cursor = Cursors.Default;
             return;
         }
     }

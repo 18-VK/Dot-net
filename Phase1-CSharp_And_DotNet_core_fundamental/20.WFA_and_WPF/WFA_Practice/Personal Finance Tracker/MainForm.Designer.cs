@@ -40,14 +40,11 @@ namespace Personal_Finance_Tracker
             viewSummaryToolStripMenuItem = new ToolStripMenuItem();
             IncomeToolStripMenuItem = new ToolStripMenuItem();
             expenseToolStripMenuItem = new ToolStripMenuItem();
-            searchToolStripMenuItem = new ToolStripMenuItem();
             statusStripMain = new StatusStrip();
             toolStripStatusLabelDateRange = new ToolStripStatusLabel();
             toolStripStatusLabelDateRVal = new ToolStripStatusLabel();
-            toolStripStatusLabelSpacer = new ToolStripStatusLabel();
             toolStripStatusLabelNumSRec = new ToolStripStatusLabel();
             toolStripStatusLabelNumRecVal = new ToolStripStatusLabel();
-            toolStripStatusLabelSpacer1 = new ToolStripStatusLabel();
             toolStripStatusLabelCurrDate = new ToolStripStatusLabel();
             toolStripStatusLblCurrVal = new ToolStripStatusLabel();
             tableLayoutOuter = new TableLayoutPanel();
@@ -106,7 +103,7 @@ namespace Personal_Finance_Tracker
             // 
             // toolStripMenuItemFilter
             // 
-            toolStripMenuItemFilter.DropDownItems.AddRange(new ToolStripItem[] { viewSummaryToolStripMenuItem, IncomeToolStripMenuItem, expenseToolStripMenuItem, searchToolStripMenuItem });
+            toolStripMenuItemFilter.DropDownItems.AddRange(new ToolStripItem[] { viewSummaryToolStripMenuItem, IncomeToolStripMenuItem, expenseToolStripMenuItem });
             toolStripMenuItemFilter.Name = "toolStripMenuItemFilter";
             toolStripMenuItemFilter.Size = new Size(59, 25);
             toolStripMenuItemFilter.Text = "Filter";
@@ -132,17 +129,10 @@ namespace Personal_Finance_Tracker
             expenseToolStripMenuItem.Text = "Expense";
             expenseToolStripMenuItem.Click += expenseToolStripMenuItem_Click;
             // 
-            // searchToolStripMenuItem
-            // 
-            searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            searchToolStripMenuItem.Size = new Size(200, 26);
-            searchToolStripMenuItem.Text = "Filter by Date";
-            searchToolStripMenuItem.Click += searchToolStripMenuItem_Click;
-            // 
             // statusStripMain
             // 
             statusStripMain.ImageScalingSize = new Size(20, 20);
-            statusStripMain.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelDateRange, toolStripStatusLabelDateRVal, toolStripStatusLabelSpacer, toolStripStatusLabelNumSRec, toolStripStatusLabelNumRecVal, toolStripStatusLabelSpacer1, toolStripStatusLabelCurrDate, toolStripStatusLblCurrVal });
+            statusStripMain.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelDateRange, toolStripStatusLabelDateRVal, toolStripStatusLabelNumSRec, toolStripStatusLabelNumRecVal, toolStripStatusLabelCurrDate, toolStripStatusLblCurrVal });
             statusStripMain.Location = new Point(0, 513);
             statusStripMain.Name = "statusStripMain";
             statusStripMain.Size = new Size(1082, 40);
@@ -152,28 +142,21 @@ namespace Personal_Finance_Tracker
             // toolStripStatusLabelDateRange
             // 
             toolStripStatusLabelDateRange.Name = "toolStripStatusLabelDateRange";
-            toolStripStatusLabelDateRange.Size = new Size(133, 34);
+            toolStripStatusLabelDateRange.Size = new Size(171, 34);
             toolStripStatusLabelDateRange.Spring = true;
             toolStripStatusLabelDateRange.Text = "Date Range : ";
             // 
             // toolStripStatusLabelDateRVal
             // 
-            toolStripStatusLabelDateRVal.AutoSize = false;
             toolStripStatusLabelDateRVal.Name = "toolStripStatusLabelDateRVal";
-            toolStripStatusLabelDateRVal.Size = new Size(133, 34);
-            toolStripStatusLabelDateRVal.Spring = true;
-            // 
-            // toolStripStatusLabelSpacer
-            // 
-            toolStripStatusLabelSpacer.AutoSize = false;
-            toolStripStatusLabelSpacer.Name = "toolStripStatusLabelSpacer";
-            toolStripStatusLabelSpacer.Size = new Size(133, 34);
-            toolStripStatusLabelSpacer.Spring = true;
+            toolStripStatusLabelDateRVal.Size = new Size(171, 34);
+            //toolStripStatusLabelDateRVal.Spring = true;
+            toolStripStatusLabelDateRVal.AutoSize = true;
             // 
             // toolStripStatusLabelNumSRec
             // 
             toolStripStatusLabelNumSRec.Name = "toolStripStatusLabelNumSRec";
-            toolStripStatusLabelNumSRec.Size = new Size(133, 34);
+            toolStripStatusLabelNumSRec.Size = new Size(171, 34);
             toolStripStatusLabelNumSRec.Spring = true;
             toolStripStatusLabelNumSRec.Text = "Nums of records : ";
             // 
@@ -181,20 +164,13 @@ namespace Personal_Finance_Tracker
             // 
             toolStripStatusLabelNumRecVal.AutoSize = false;
             toolStripStatusLabelNumRecVal.Name = "toolStripStatusLabelNumRecVal";
-            toolStripStatusLabelNumRecVal.Size = new Size(133, 34);
+            toolStripStatusLabelNumRecVal.Size = new Size(171, 34);
             toolStripStatusLabelNumRecVal.Spring = true;
-            // 
-            // toolStripStatusLabelSpacer1
-            // 
-            toolStripStatusLabelSpacer1.AutoSize = false;
-            toolStripStatusLabelSpacer1.Name = "toolStripStatusLabelSpacer1";
-            toolStripStatusLabelSpacer1.Size = new Size(133, 34);
-            toolStripStatusLabelSpacer1.Spring = true;
             // 
             // toolStripStatusLabelCurrDate
             // 
             toolStripStatusLabelCurrDate.Name = "toolStripStatusLabelCurrDate";
-            toolStripStatusLabelCurrDate.Size = new Size(133, 34);
+            toolStripStatusLabelCurrDate.Size = new Size(171, 34);
             toolStripStatusLabelCurrDate.Spring = true;
             toolStripStatusLabelCurrDate.Text = "Current Date : ";
             // 
@@ -203,7 +179,7 @@ namespace Personal_Finance_Tracker
             toolStripStatusLblCurrVal.AutoSize = false;
             toolStripStatusLblCurrVal.Name = "toolStripStatusLblCurrVal";
             toolStripStatusLblCurrVal.RightToLeft = RightToLeft.No;
-            toolStripStatusLblCurrVal.Size = new Size(133, 34);
+            toolStripStatusLblCurrVal.Size = new Size(171, 34);
             toolStripStatusLblCurrVal.Spring = true;
             toolStripStatusLblCurrVal.Text = "10-12-2025";
             // 
@@ -240,6 +216,7 @@ namespace Personal_Finance_Tracker
             // 
             // dataGridViewMain
             // 
+            dataGridViewMain.ColumnHeadersVisible = true;
             dataGridViewMain.AllowUserToAddRows = false;
             dataGridViewMain.AllowUserToDeleteRows = false;
             dataGridViewMain.AutoGenerateColumns = false;
@@ -256,7 +233,8 @@ namespace Personal_Finance_Tracker
             dataGridViewMain.RowsAdded += dataGridViewMain_RowsAdded;
             dataGridViewMain.RowsRemoved += dataGridViewMain_RowsRemoved;
             dataGridViewMain.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewMain.MultiSelect = false;
+            dataGridViewMain.MultiSelect = false; 
+            dataGridViewMain.Scroll += dataGridViewMain_Scroll;
             // 
             // DataGridColSRNo
             // 
@@ -423,16 +401,13 @@ namespace Personal_Finance_Tracker
         private ToolStripMenuItem toolStripMenuItemFilter;
         private ToolStripMenuItem IncomeToolStripMenuItem;
         private ToolStripMenuItem expenseToolStripMenuItem;
-        private ToolStripMenuItem searchToolStripMenuItem;
         private StatusStrip statusStripMain;
         private ToolStripStatusLabel toolStripStatusLabelDateRange;
         private ToolStripStatusLabel toolStripStatusLabelNumSRec;
         private ToolStripStatusLabel toolStripStatusLabelCurrDate;
         private ToolStripStatusLabel toolStripStatusLblCurrVal;
         private ToolStripStatusLabel toolStripStatusLabelDateRVal;
-        private ToolStripStatusLabel toolStripStatusLabelSpacer;
         private ToolStripStatusLabel toolStripStatusLabelNumRecVal;
-        private ToolStripStatusLabel toolStripStatusLabelSpacer1;
         private TableLayoutPanel tableLayoutOuter;
         private TableLayoutPanel tableLayoutPanelInner;
         private DataGridView dataGridViewMain;
