@@ -48,7 +48,7 @@ public class AppDbContext : DbContext
 }
 
 
-2. DTO for read-heavy query (returned by Dapper)
+2. DTO(data transfer object) for read-heavy query (returned by Dapper)
 
 public class ProductSalesDto
 {

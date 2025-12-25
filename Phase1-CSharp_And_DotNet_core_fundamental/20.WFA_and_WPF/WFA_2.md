@@ -138,6 +138,66 @@ private bool ValidateInputs()
     return ok;
 }
 
+ValidateChildren() is a WinForms method that:
+Forces validation on all child controls of a container (Form / Panel / GroupBox)
+
+It triggers:
+
+- Validating
+- Validated
+
+events on each child control.
+e.g : 
+this.ValidateChildren();
+
+Used when clicking Save / Submit.
+
+In real applications:
+
+- Users click Save
+- Some fields may not have lost focus yet
+- Validation must still run
+
+👉 ValidateChildren() ensures everything is validated before saving.
+
+Example : 
+
+private void btnSave_Click(object sender, EventArgs e)
+{
+    if (!this.ValidateChildren())
+    {
+        MessageBox.Show("Please correct validation errors.");
+        return;
+    }
+
+    // Save data
+}
+✔ Forces validation
+✔ Prevents invalid save
+
+>> Validation Scope (Important)
+
+You can validate:
+
+- Entire form
+- Specific container
+
+panel1.ValidateChildren();
+groupBox1.ValidateChildren();
+
+>> this.AutoValidate()
+
+public LoginForm()
+{
+    InitializeComponent();
+
+    // Disable auto validation; validate only when we want
+    this.AutoValidate = AutoValidate.Disable;
+}
+✔ Very common professional setup
+
+✔ Useful in multi-step forms
+
 8) Custom Input Dialog (InputBox) — simple modal prompt
 
 WinForms has no built-in InputBox. Create a tiny modal form for single-line input — handy for quick prompts.

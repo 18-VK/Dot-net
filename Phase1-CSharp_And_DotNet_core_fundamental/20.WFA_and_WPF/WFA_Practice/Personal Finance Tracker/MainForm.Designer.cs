@@ -181,7 +181,7 @@ namespace Personal_Finance_Tracker
             toolStripStatusLblCurrVal.RightToLeft = RightToLeft.No;
             toolStripStatusLblCurrVal.Size = new Size(171, 34);
             toolStripStatusLblCurrVal.Spring = true;
-            toolStripStatusLblCurrVal.Text = "10-12-2025";
+            toolStripStatusLblCurrVal.Text = DateTime.Now.ToString("dd-MM-yyyy");
             // 
             // tableLayoutOuter
             // 
